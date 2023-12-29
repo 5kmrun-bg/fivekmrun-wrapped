@@ -21,7 +21,7 @@ const parseSelfieRun = (json) => ({
   totalTime: json["s_total_elapsed_time"],
   pace: timeInSecondsToPace(json["s_time"]),
   position: json["s_finish_pos"],
-  startDate: new Date(json["s_start_date"]),
+  startDate: new Date(Date.parse(json["s_start_date"])),
   distance: json["s_distance"],
   totalDistance: json["s_total_distance"],
 
