@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { getData } from "./api";
 
-const BASE_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:5173/api/"
-    : "https://5kmrun.bg/api/";
-const USER_API = "selfie/user/";
+const loadData = async (userID) => {
+  const data = await getData(userID);
 
-const getData = async (userID) => {
-  const response = await fetch(`${BASE_URL}${USER_API}${userID}`);
-  const data = await response.json();
+  console.log("PARSED DATA:");
   console.log(data);
 };
 
@@ -17,7 +13,7 @@ const App = () => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    getData("18880");
+    loadData("18880");
   }, []);
 
   return (
@@ -29,7 +25,7 @@ const App = () => {
           placeholder="ID"
           onChange={(e) => setUserId(e.target.value)}
         />
-        <button onClick={() => getData(userId)}>Get</button>
+        <button onClick={() => loadData(userId)}>Get</button>
       </div>
     </>
   );
