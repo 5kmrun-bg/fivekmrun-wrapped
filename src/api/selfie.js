@@ -38,8 +38,8 @@ export const getSelfieRuns = async (userID) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
-    console.log("RAW Selfie DATA");
-    console.log(data);
+    // console.log("RAW Selfie DATA");
+    // console.log(data);
 
     const user = parseUserData(userID, data.user[0]);
     const allRuns = data.runs.map(parseSelfieRun);

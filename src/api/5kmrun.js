@@ -8,7 +8,7 @@ const parseRun = (json) => ({
   isSelfie: false,
   eventId: json["r_eventid"],
   location: json["n_name"],
-  date: new Date(json["e_date"]),
+  date: new Date(json["e_date"] * 1000),
 
   time: json["r_time"],
   pace: timeInSecondsToPace(json["r_time"]),
@@ -21,8 +21,8 @@ export const getRunsData = async (userID) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
-    console.log("RAW Runs DATA");
-    console.log(data);
+    // console.log("RAW Runs DATA");
+    // console.log(data);
 
     const runsData =
       data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];

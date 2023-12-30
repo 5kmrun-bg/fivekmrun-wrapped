@@ -10,7 +10,7 @@ const parseRun = (json) => {
     isSelfie: false,
     eventId: json["r_eventid"],
     location: json["n_name"],
-    date: new Date(json["e_date"]),
+    date: new Date(json["e_date"] * 1000),
     distance,
 
     time: json["r_time"],
@@ -23,8 +23,8 @@ export const getXLRuns = async (userID) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
-    console.log("RAW XLRUN DATA");
-    console.log(data);
+    // console.log("RAW XLRUN DATA");
+    // console.log(data);
 
     const runsData =
       data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
