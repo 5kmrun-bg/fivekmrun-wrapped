@@ -1,4 +1,5 @@
-import { BASE_URL } from "./constants";
+import { getYear } from "date-fns";
+import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "./utils";
 
 const URL = `${BASE_URL}selfie/user/`;
@@ -41,7 +42,8 @@ export const getSelfieRuns = async (userID) => {
     console.log(data);
 
     const user = parseUserData(userID, data.user[0]);
-    const runs = data.runs.map(parseSelfieRun);
+    const allRuns = data.runs.map(parseSelfieRun);
+    const runs = allRuns.filter((run) => getYear(run.startDate) === YEAR);
 
     return { user, runs };
   } catch (error) {

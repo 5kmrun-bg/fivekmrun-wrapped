@@ -1,8 +1,7 @@
-import { BASE_URL } from "./constants";
+import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "./utils";
 
 const URL = `${BASE_URL}xlrun/user/`;
-const CURRENT_YEAR = "2023";
 
 const parseRun = (json) => {
   const distance = parseFloat(json["e_len"]);
@@ -28,7 +27,7 @@ export const getXLRuns = async (userID) => {
     console.log(data);
 
     const runsData =
-      data.years.find((year) => year.yr === CURRENT_YEAR)?.results ?? [];
+      data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
     const runs = runsData.map(parseRun);
     return runs;
   } catch (error) {
