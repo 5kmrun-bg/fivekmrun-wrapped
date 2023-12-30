@@ -7,7 +7,6 @@ const App = () => {
 
   return (
     <>
-      <h1>5kmrun Wrapped</h1>
       {userId ? <StatsPage userId={userId} /> : <IDPage />}
     </>
   );

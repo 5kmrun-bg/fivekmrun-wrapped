@@ -3,7 +3,8 @@ import { useState } from "react";
 export const IDPage = () => {
   const [userId, setUserId] = useState(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const origin = window.location.origin;
     window.location.href = `${origin}/${userId}`;
   };
@@ -11,12 +12,13 @@ export const IDPage = () => {
   // TODO: Load user on input change
 
   return (
-    <div className="id-form">
+    <form className="id-form" onSubmit={handleSubmit}>
       <input
         type="number"
-        placeholder="ID"
-        onChange={(e) => setUserId(e.target.value)} />
-      <button onClick={handleSubmit}>GO</button>
-    </div>
+        placeholder="номер"
+        onChange={(e) => setUserId(e.target.value)}
+      />
+      <button>Давай!</button>
+    </form>
   );
 };

@@ -13,7 +13,8 @@
     "date-fns": "^3.0.6",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-insta-stories": "^2.6.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
