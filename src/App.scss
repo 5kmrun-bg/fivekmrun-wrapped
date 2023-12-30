@@ -1,0 +1,29 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.id-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: 2rem;
+  gap: 2rem;
+
+  input {
+    width: 500px;
+    height: 50px;
+    font-size: 3rem;
+    padding: 0 1rem;
+  }
+}
+.card {
+  padding: 2em;
+}
+
+pre {
+  width: 500px;
+  text-align: start;
+}
