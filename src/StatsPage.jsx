@@ -19,6 +19,24 @@ const stories = [
             </div>
           </div>
       ),
+      },
+      {
+      content: (props) => (
+        <div style={{  backgroundImage: "url('https://5kmrun.bg/files/header_2_large.jpg')", backgroundColor: 'rgba(0,0,0,0.5)'}}>
+          <div style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: "20px"}}>
+            <h1 style={{ marginTop: 5 }}>Същински бягания</h1>
+            <div>
+              През тази година участвахте в ... бягания.
+            </div>
+            <div>
+              Пробягахте общо ... километра.
+            </div>
+            <div>
+              И това ви отне общо ... часа.
+            </div>
+          </div>
+        </div>
+    ),
   },
   // {
   //   url: "https://5kmrun.bg/images/HaderSelfie.png",
@@ -41,6 +59,8 @@ export const StatsPage = ({ userId }) => {
   useEffect(() => {
     const load = async () => {
       const stats = await loadStats(userId);
+      console.log("Data loaded: ");
+      console.log(stats);
       setStats(stats);
     };
     load();
