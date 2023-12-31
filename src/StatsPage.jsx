@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { loadStats } from "./stats";
 import Stories from "react-insta-stories";
 import joroAvatar from "./assets/joro-avatar.png";
+import {formatDistance, formatTime} from "./utils";
 
 const width = 360;
 const height = 640;
@@ -44,10 +45,10 @@ export const StatsPage = ({ userId }) => {
               През тази година участвахте в {stats?.officialRuns.activeWeeks} бягания.
             </div>
             <div>
-              Пробягахте общо {stats?.officialRuns.totalDistance} километра.
+              Пробягахте общо {formatDistance(stats?.officialRuns.totalDistance)} километра.
             </div>
             <div>
-              И това ви отне общо {stats?.officialRuns.totalTime} часа.
+              И това ви отне общо {formatTime(stats?.officialRuns.totalTime)}.
             </div>
           </div>
         </div>
@@ -77,10 +78,10 @@ export const StatsPage = ({ userId }) => {
               В Selfie класацията, бяхте активни в {stats?.selfieRuns.activeWeeks} седмици.
             </div>
             <div>
-              Пробягахте общо {stats?.selfieRuns.totalDistance} километра.
+              Пробягахте общо {formatDistance(stats?.selfieRuns.totalDistance)} километра.
             </div>
             <div>
-              И това ви отне общо {stats?.selfieRuns.totalTime} часа.
+              И това ви отне общо {formatTime(stats?.selfieRuns.totalTime)} часа.
             </div>
           </div>
         </div>
@@ -119,10 +120,10 @@ export const StatsPage = ({ userId }) => {
               Брой участия в XLRuns: {stats?.xlRuns.activeWeeks}
             </div>
             <div>
-              Пробягани километри: {stats?.xlRuns.totalDistance}
+              Пробягани километри: {formatDistance(stats?.xlRuns.totalDistance)}
             </div>
             <div>
-              Общо време: {stats?.xlRuns.totalTime}
+              Общо време: {formatTime(stats?.xlRuns.totalTime)}
             </div>
           </div>
         </div>

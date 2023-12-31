@@ -1,6 +1,6 @@
 import { getYear } from "date-fns";
 import { BASE_URL, YEAR } from "./constants";
-import { timeInSecondsToPace } from "./utils";
+import { timeInSecondsToPace } from "../utils";
 
 const URL = `${BASE_URL}selfie/user/`;
 

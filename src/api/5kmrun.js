@@ -1,5 +1,5 @@
 import { BASE_URL, YEAR } from "./constants";
-import { timeInSecondsToPace } from "./utils";
+import { timeInSecondsToPace } from "../utils";
 
 const URL = `${BASE_URL}5kmrun/user/`;
 
