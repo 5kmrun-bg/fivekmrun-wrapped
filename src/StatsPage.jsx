@@ -88,7 +88,7 @@ export const StatsPage = ({ userId }) => {
     },
     {
       content: (props) => (
-        <div style={{ backgroundImage: "url('https://5kmrun.bg/images/HaderSelfie.png')", backgroundColor: 'rgba(0,0,0,0.5)' }}>
+        <div style={{ backgroundImage: "url('https://5kmrun.bg/files/header_4_large.jpg')", backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: "20px" }}>
             <h1 style={{ marginTop: 5 }}>Вашите рекорди</h1>
             <div>
@@ -100,7 +100,7 @@ export const StatsPage = ({ userId }) => {
     },
     {
       content: (props) => (
-        <div style={{ backgroundImage: "url('https://5kmrun.bg/images/HaderSelfie.png')", backgroundColor: 'rgba(0,0,0,0.5)' }}>
+        <div style={{ backgroundImage: "url('https://5kmrun.bg/files/header_5_large.jpg')", backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: "20px" }}>
             <h1 style={{ marginTop: 5 }}>Вашите постижения</h1>
             <div>
