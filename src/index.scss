@@ -1,12 +1,12 @@
 @font-face {
   font-family: Plovdiv;
-  src: url("fonts/PlovdivDisplay-Regular.otf") format("opentype");
+  src: url("assets/fonts/PlovdivDisplay-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: Plovdiv;
   font-weight: bold;
-  src: url("fonts/PlovdivDisplay-Bold.otf") format("opentype");
+  src: url("assets/fonts/PlovdivDisplay-Bold.otf") format("opentype");
 }
 
 input::-webkit-outer-spin-button,
@@ -60,9 +60,4 @@ body {
     border: 1px solid #808080;
     border-radius: 4px;
   }
-}
-
-#root {
-  min-width: 320px;
-  min-height: 100vh;
 }

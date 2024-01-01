@@ -6,9 +6,6 @@ import joroAvatar from "./assets/joro-avatar.png";
 import { formatDistance, formatTime } from "./utils";
 import "./StatsPage.scss";
 
-const width = 360;
-const height = 640;
-
 const Story = ({ children, bgImage }) => {
   return (
     <>

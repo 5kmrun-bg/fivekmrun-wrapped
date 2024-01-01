@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import joroAvatar from "./assets/joro-avatar.png";
 
 const IMAGES = [
   "https://5kmrun.bg/files/header_3_large.jpg",
   "https://5kmrun.bg/files/header_4_large.jpg",
   "https://5kmrun.bg/files/header_5_large.jpg",
   "https://5kmrun.bg/images/HaderSelfie.png",
-  "./assets/joro-avatar.png"
-]
+  joroAvatar,
+];
 
 const preloadImage = (src) =>
   new Promise((resolve, reject) => {
