@@ -63,6 +63,7 @@ const getXLRunsStats = (data) => {
   return {
     numRaces: xlRuns.length,
     totalDistance: _.sumBy(xlRuns, "distance"),
+    totalTime: _.sumBy(xlRuns, "time"),
     bestPositionRun: _.chain(xlRuns).sortBy("position").take(3).value(),
   };
 };
