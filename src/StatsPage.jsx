@@ -11,17 +11,13 @@ const height = 640;
 
 const Story = ({ children, bgImage }) => {
   return (
-    <div
-      className="story"
-      style={{
-        backgroundImage: `url('${bgImage}')`,
-        backgroundColor: "rgba(0,0,0,0.5)",
-      }}
-    >
-      <div style={{ backgroundColor: "rgba(0,0,0,0.5)", padding: "20px" }}>
-        {children}
+    <>
+      <img className="story-bg-img" src={bgImage} alt="bg" />
+      <div className="story-bg-overlay" />
+      <div className="story">
+        <div className="story-content">{children}</div>
       </div>
-    </div>
+    </>
   );
 };
 Story.Header = ({ children }) => <h1 style={{ marginTop: 5 }}>{children}</h1>;
@@ -58,13 +54,11 @@ const createStories = (stats) => {
         <Story bgImage="https://5kmrun.bg/files/header_3_large.jpg">
           <Story.Header>Паркове</Story.Header>
           <Story.Content>
-            <div>
+            <p>
               Любимият ви парк за бягане през 2023 бе {topParkName} с{" "}
               {topParkCount} бягания.
-            </div>
-            <div>
-              Ето и класацията на парковете, в които сте бягали през 2023:
-            </div>
+            </p>
+            <p>Ето и класацията на парковете, в които сте бягали през 2023:</p>
           </Story.Content>
         </Story>
       ),
@@ -152,22 +146,15 @@ export const StatsPage = ({ userId }) => {
     load();
   }, [userId]);
 
-  if (!stories) return <div>Зареждане...</div>;
+  if (!stories) return <div className="stats-loading">Зареждане...</div>;
 
   return (
     <div className="stats-page">
       <Stories
         stories={stories}
         storyContainerStyles={{ borderRadius: 12, overflow: "hidden" }}
-        defaultInterval={10000}
+        defaultInterval={5000}
         keyboardNavigation
-        storyStyles={{
-          width: `${width}px`,
-          height: `${height}px`,
-          objectFit: "cover",
-          maxWidth: "100%",
-          maxHeight: "100%",
-        }}
       />
     </div>
   );
