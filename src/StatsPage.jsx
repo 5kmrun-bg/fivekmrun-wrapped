@@ -88,7 +88,7 @@ const createStories = (stats) => {
                 {index + 1}. {parkName} - {parkCount} бягания
               </p>
             ))}
-            {(locationBreakdown.length > 1) && locationBreakdown.length < 6 && 
+            {locationBreakdown.length < 6 && 
               <p>
                 Нашето предизвикателство за вас за следващата година  е да бягате и в останалите{" "}
                 {6 - locationBreakdown.length} парка, в които не сте бягали през 2023.
