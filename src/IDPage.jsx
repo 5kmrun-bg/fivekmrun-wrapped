@@ -13,6 +13,8 @@ export const IDPage = () => {
 
   return (
     <form className="id-form" onSubmit={handleSubmit}>
+      <img src="logo.png" alt="logo" className="logo"/>
+
       <input
         type="number"
         placeholder="номер"
