@@ -21,7 +21,7 @@ const getOfficialRunsStats = (data) => {
   if (!runs) {
     return null;
   }
-
+  
   return {
     activeWeeks: runs.length,
     totalDistance: _.sumBy(runs, "distance"),
@@ -48,7 +48,7 @@ const getSelfieRunsStats = (data) => {
     activeWeeks: selfieRuns.length,
     totalDistance: _.sumBy(selfieRuns, "distance"),
     totalTime: _.sumBy(selfieRuns, "time"),
-    fastestRuns: _.chain(selfieRuns).sortBy("time").take(3).value(),
+    fastestRun: _.minBy(selfieRuns, "time"),
     bestPositionRun: _.chain(selfieRuns).sortBy("position").take(3).value(),
   };
 };
