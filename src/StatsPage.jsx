@@ -65,10 +65,11 @@ const createStories = (stats) => {
             <p>
               И това ви отне общо <span className="accent">{formatTime(officialRuns.totalTime)}</span>.
             </p>
-            <p>Откакто започнахме с първото събитие на 5kmrun преди 8 години сме организирали 2472 бягания.
+            <p>Откакто започнахме с първото събитие на 5kmrun преди 8 години сме организирали <span className="accent">2472</span> бягания.
             </p>
             <p>
-              Пробягали заедно 1346795 км прекарвайки в бягане 13 години 11 месеца 4 дни и половина. Това е 3.5 разстоянието до Луната.
+              Пробягали заедно <span className="accent">1346795</span> км прекарвайки в бягане <span className="accent">13 години 11 месеца 4 дни и половина</span>. 
+              Това се равнява на 3.5 пъти разстоянието до Луната.
             </p>
             <p>Тези числа нямаше да са същите без вашия принос.</p>
           </Story.Content>
@@ -143,14 +144,18 @@ const createStories = (stats) => {
         <Story bgImage="https://5kmrun.bg/files/header_4_large.jpg">
           <Story.Header>Рекорди</Story.Header>
           <Story.Content>
-            <p>Най-доброто време при мъжете държи Исмаил Ссенанджи с 14:29 поставено на 03.09.2022.</p>
-            <p>Най-доброто време при жените държи Милица Мирчева с 16:21 поставено на 01.08.2020.</p>
+            <p>Най-доброто време при мъжете държи Исмаил Ссенанджи с <span className="accent">14:29</span> поставено на 03.09.2022.</p>
+            <p>Най-доброто време при жените държи Милица Мирчева с <span className="accent">16:21</span> поставено на 01.08.2020.</p>
             <p>Ето и вашите най-бързи бягания през изминалата година:</p>
             {(officialRuns?.activeWeeks > 0) &&
-              <p>Същинско бягане:<br /> <span className="accent">{officialRuns?.fastestRun?.date?.toLocaleDateString()}, {formatTime(officialRuns?.fastestRun?.time)}</span></p>
+              <p>Същинско бягане:<br /> <span className="accent">{officialRuns?.fastestRun?.date?.toLocaleDateString()}, {formatTime(officialRuns?.fastestRun?.time)}</span>
+              {(officialRuns?.fastestRun?.id === officialRuns?.fastestRunEver?.id) && <span className="accent"> - нов рекорд!</span>} 
+              </p>
             }
             {(selfieRuns?.activeWeeks > 0) &&
-              <p>Selfie бягане: <br /> <span className="accent">{selfieRuns?.fastestRun?.startDate?.toLocaleDateString()}, {formatTime(selfieRuns?.fastestRun?.time)}</span></p>
+              <p>Selfie бягане: <br /> <span className="accent">{selfieRuns?.fastestRun?.startDate?.toLocaleDateString()}, {formatTime(selfieRuns?.fastestRun?.time)}</span>
+                {(selfieRuns?.fastestRun?.id === selfieRuns?.fastestRunEver?.id) && <span className="accent"> - нов рекорд!</span>} 
+              </p>
             }
           </Story.Content>
         </Story>
@@ -162,8 +167,8 @@ const createStories = (stats) => {
           <Story.Header>Постижения</Story.Header>
           <Story.Content>
             <p>Ето и вашите най-добри класирания през 2023 година:</p>
-            <p>Участникът с най-много първи места в 5kmrun се казва Цветан Бахчеванов. 
-              Той е завоювал цели 237 първи места от 482 бягания организирани в Бургас.</p>
+            <p>Участникът с най-много първи места в 5kmrun се казва <span className="accent">Цветан Бахчеванов</span>. 
+              Той е завоювал цели <span className="accent">237</span> първи места от 482 бягания организирани в Бургас.</p>
           </Story.Content>
         </Story>
       ),

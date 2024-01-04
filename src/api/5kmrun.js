@@ -1,5 +1,6 @@
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
+import _ from "lodash";
 
 const URL = `${BASE_URL}5kmrun/user/`;
 
@@ -27,7 +28,12 @@ export const getRunsData = async (userID) => {
     const runsData =
       data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
 
+    const fastestRunEver = parseRun(_.minBy(data.years.map((year) => year.results).flat(), "r_time"));
+    // console.log("FASTEST RUN EVER");
+    // console.log(fastestRunEver);
     const runs = runsData.map(parseRun);
+    runs.fastestRunEver = fastestRunEver;
+
     return runs;
   } catch (error) {
     console.log(error);

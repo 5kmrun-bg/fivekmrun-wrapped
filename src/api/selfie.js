@@ -1,6 +1,7 @@
 import { getYear } from "date-fns";
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
+import _ from "lodash";
 
 const URL = `${BASE_URL}selfie/user/`;
 
@@ -43,7 +44,10 @@ export const getSelfieRuns = async (userID) => {
 
     const user = parseUserData(userID, data.user[0]);
     const allRuns = data.runs.map(parseSelfieRun);
+    const fastestRunEver = _.minBy(allRuns, "time");
+
     const runs = allRuns.filter((run) => getYear(run.startDate) === YEAR);
+    runs.fastestRunEver = fastestRunEver;
 
     return { user, runs };
   } catch (error) {

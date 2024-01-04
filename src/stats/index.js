@@ -27,6 +27,7 @@ const getOfficialRunsStats = (data) => {
     totalDistance: _.sumBy(runs, "distance"),
     totalTime: _.sumBy(runs, "time"),
     fastestRun: _.minBy(runs, "time"),
+    fastestRunEver: runs.fastestRunEver,
     bestPositionRun: _.minBy(runs, "position"),
     locationBreakdown: _.chain(runs)
       .countBy("location")
@@ -49,6 +50,7 @@ const getSelfieRunsStats = (data) => {
     totalDistance: _.sumBy(selfieRuns, "distance"),
     totalTime: _.sumBy(selfieRuns, "time"),
     fastestRun: _.minBy(selfieRuns, "time"),
+    fastestRunEver: selfieRuns.fastestRunEver,
     bestPositionRun: _.chain(selfieRuns).sortBy("position").take(3).value(),
   };
 };
