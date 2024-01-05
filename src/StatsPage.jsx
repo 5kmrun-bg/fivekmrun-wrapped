@@ -21,8 +21,8 @@ const Story = ({ children, bgImage }) => {
     </>
   );
 };
-Story.Header = ({ children }) => <h1 style={{ marginTop: 5 }}>{children}</h1>;
-Story.Content = ({ children }) => <div>{children}</div>;
+Story.Header = ({ children }) => <h1>{children}</h1>;
+Story.Content = ({ children }) => <>{children}</>;
 
 const createStories = (stats) => {
   if (!stats) return null;
@@ -34,6 +34,7 @@ const createStories = (stats) => {
         <Story bgImage="https://5kmrun.bg/files/header_5_large.jpg">
           <Story.Header>{YEAR}-та с 5kmrun.bg</Story.Header>
           <Story.Content>
+            <img src={joroAvatar} className="joro-avatar" />
             <p>Здравей, {user.name}!</p>
             <p>
               Отправяме ти специален поздрав като участник на 5kmrun през {YEAR}{" "}
@@ -46,7 +47,6 @@ const createStories = (stats) => {
               страхотна резолюция. Това пък е и нашето пожелание към теб.
               Очакваме те и през {YEAR + 1}-та година!
             </p>
-            <img src={joroAvatar} />
           </Story.Content>
         </Story>
       ),
@@ -292,7 +292,7 @@ export const StatsPage = ({ userId }) => {
       <Stories
         stories={stories}
         storyContainerStyles={{ borderRadius: 12, overflow: "hidden" }}
-        defaultInterval={100000}
+        defaultInterval={10000}
         width={Math.min(window.innerWidth - PADDING * 2, 500)}
         height={Math.min(window.innerHeight - PADDING * 2, 900)}
         keyboardNavigation
