@@ -11,11 +11,15 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-input[type=number]{
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 body {
@@ -24,40 +28,43 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  height: 100vh;
+  height: -webkit-fill-available;
 
   margin: 0;
   padding: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow: hidden;
+  #root {
+    height: 100%;
+    height: -webkit-fill-available;
+    width: 100%;
+  }
 
   * {
     box-sizing: border-box;
     font-family: Plovdiv, sans-serif;
   }
+}
 
+button {
+  background-color: #6b6b6b;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  button {
-    background-color: #6b6b6b;
-    color: rgba(255, 255, 255, 0.87);
+  border: 1px solid #1f1f1f;
+  border-radius: 4px;
 
-    border: 1px solid #1f1f1f;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-      opacity: 0.75;
-    }
+  &:hover,
+  &:focus {
+    opacity: 0.75;
   }
+}
 
-  input {
-    background-color: #3b3b3b;
-    color: rgba(255, 255, 255, 0.87);
+input {
+  background-color: #3b3b3b;
+  color: rgba(255, 255, 255, 0.87);
 
-    border: 1px solid #808080;
-    border-radius: 4px;
-  }
+  border: 1px solid #808080;
+  border-radius: 4px;
 }

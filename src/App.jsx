@@ -1,4 +1,3 @@
-import "./App.scss";
 import { StatsPage } from "./StatsPage";
 import { IDPage } from "./IDPage";
 import usePreloadImages from "./use-preload-images";
