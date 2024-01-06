@@ -17,10 +17,10 @@ const BG = {
   run: "https://5kmrun.bg/files/header_5_large.jpg",
 };
 
-const Story = ({ children, bgImage }) => {
+const Story = ({ children, bgImage, bgPosition = "center" }) => {
   return (
     <>
-      <img className="story-bg-img" src={bgImage} alt="bg" />
+      <img className={`story-bg-img ${bgPosition}`} src={bgImage} alt="bg" />
       <div className="story-bg-overlay" />
       <div className="story">
         <div className="story-content">{children}</div>
@@ -67,7 +67,7 @@ const createStories = (stats) => {
     stories.push({
       duration: 20_000,
       content: () => (
-        <Story bgImage={BG.xlrun}>
+        <Story bgImage={BG.run} bgPosition="left">
           <Story.Header>Същински бягания</Story.Header>
           <Story.Content>
             <p>
@@ -109,7 +109,7 @@ const createStories = (stats) => {
 
     stories.push({
       content: () => (
-        <Story bgImage={BG.xlrun}>
+        <Story bgImage={BG.run} bgPosition="right">
           <Story.Header>Паркове</Story.Header>
           <Story.Content>
             <p>
@@ -158,7 +158,7 @@ const createStories = (stats) => {
       {
         duration: 10_000,
         content: () => (
-          <Story bgImage={BG.selfie}>
+          <Story bgImage={BG.selfie} bgPosition="selfie">
             <Story.Header>Selfie бягания</Story.Header>
             <Story.Content>
               <p>
@@ -232,7 +232,7 @@ const createStories = (stats) => {
     },
     {
       content: () => (
-        <Story bgImage={BG.run}>
+        <Story bgImage={BG.xlrun}>
           <Story.Header>Постижения</Story.Header>
           <Story.Content>
             <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
@@ -253,7 +253,7 @@ const createStories = (stats) => {
       ...stories,
       {
         content: () => (
-          <Story bgImage={BG.selfie}>
+          <Story bgImage={BG.xlrun} bgPosition="right">
             <Story.Header>XLRun Състезания</Story.Header>
             <Story.Content>
               <p>

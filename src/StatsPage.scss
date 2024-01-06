@@ -23,6 +23,20 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.5;
+
+    &.center {
+      object-position: center;
+    }
+    &.right {
+      object-position: right;
+    }
+    &.left {
+      object-position: left;
+    }
+
+    &.selfie {
+      object-position: 12%;
+    }
   }
 
   .story-bg-overlay {
@@ -50,7 +64,8 @@
       margin-bottom: 10px;
     }
 
-    h1, p {
+    h1,
+    p {
       z-index: 100;
     }
 
