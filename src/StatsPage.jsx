@@ -10,6 +10,13 @@ import { YEAR } from "./api/constants";
 const PADDING = 16;
 const StatsStyle = { "--stats-padding": `${PADDING}px` };
 
+const BG = {
+  selfie: "https://5kmrun.bg/images/HaderSelfie.png",
+  kids: "https://5kmrun.bg/files/header_4_large.jpg",
+  xlrun: "https://5kmrun.bg/files/header_3_large.jpg",
+  run: "https://5kmrun.bg/files/header_5_large.jpg",
+};
+
 const Story = ({ children, bgImage }) => {
   return (
     <>
@@ -31,7 +38,7 @@ const createStories = (stats) => {
   let stories = [
     {
       content: () => (
-        <Story bgImage="https://5kmrun.bg/files/header_5_large.jpg">
+        <Story bgImage={BG.run}>
           <Story.Header>{YEAR}-та с 5kmrun.bg</Story.Header>
           <Story.Content>
             <img src={joroAvatar} className="joro-avatar" />
@@ -58,8 +65,9 @@ const createStories = (stats) => {
     const [topParkName, topParkCount] = locationBreakdown[0];
 
     stories.push({
+      duration: 20_000,
       content: () => (
-        <Story bgImage="https://5kmrun.bg/files/header_3_large.jpg">
+        <Story bgImage={BG.xlrun}>
           <Story.Header>Същински бягания</Story.Header>
           <Story.Content>
             <p>
@@ -101,7 +109,7 @@ const createStories = (stats) => {
 
     stories.push({
       content: () => (
-        <Story bgImage="https://5kmrun.bg/files/header_3_large.jpg">
+        <Story bgImage={BG.xlrun}>
           <Story.Header>Паркове</Story.Header>
           <Story.Content>
             <p>
@@ -148,8 +156,9 @@ const createStories = (stats) => {
     stories = [
       ...stories,
       {
+        duration: 10_000,
         content: () => (
-          <Story bgImage="https://5kmrun.bg/images/HaderSelfie.png">
+          <Story bgImage={BG.selfie}>
             <Story.Header>Selfie бягания</Story.Header>
             <Story.Content>
               <p>
@@ -178,7 +187,7 @@ const createStories = (stats) => {
     ...stories,
     {
       content: () => (
-        <Story bgImage="https://5kmrun.bg/files/header_4_large.jpg">
+        <Story bgImage={BG.kids}>
           <Story.Header>Рекорди</Story.Header>
           <Story.Content>
             <p>
@@ -223,7 +232,7 @@ const createStories = (stats) => {
     },
     {
       content: () => (
-        <Story bgImage="https://5kmrun.bg/files/header_5_large.jpg">
+        <Story bgImage={BG.run}>
           <Story.Header>Постижения</Story.Header>
           <Story.Content>
             <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
@@ -244,7 +253,7 @@ const createStories = (stats) => {
       ...stories,
       {
         content: () => (
-          <Story bgImage="https://5kmrun.bg/images/HaderSelfie.png">
+          <Story bgImage={BG.selfie}>
             <Story.Header>XLRun Състезания</Story.Header>
             <Story.Content>
               <p>
@@ -292,7 +301,7 @@ export const StatsPage = ({ userId }) => {
       <Stories
         stories={stories}
         storyContainerStyles={{ borderRadius: 12, overflow: "hidden" }}
-        defaultInterval={10000}
+        defaultInterval={15000}
         width={Math.min(window.innerWidth - PADDING * 2, 500)}
         height={Math.min(window.innerHeight - PADDING * 2, 900)}
         keyboardNavigation
