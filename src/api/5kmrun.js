@@ -1,22 +1,29 @@
+import _ from "lodash";
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
-import _ from "lodash";
+import eventParticipation from "./2023-participation.json";
 
 const URL = `${BASE_URL}5kmrun/user/`;
 
-const parseRun = (json) => ({
-  id: json["r_id"],
-  isSelfie: false,
-  eventId: json["r_eventid"],
-  location: json["n_name"],
-  date: new Date(json["e_date"] * 1000),
+const parseRun = (json) => {
+  const id = json["r_eventid"];
+  const participationData = eventParticipation[id];
 
-  time: json["r_time"],
-  pace: timeInSecondsToPace(json["r_time"]),
-  position: json["r_finish_pos"],
+  return {
+    id,
+    isSelfie: false,
+    eventId: json["r_eventid"],
+    location: json["n_name"],
+    date: new Date(json["e_date"] * 1000),
 
-  distance: 5000,
-});
+    time: json["r_time"],
+    pace: timeInSecondsToPace(json["r_time"]),
+    position: json["r_finish_pos"],
+
+    distance: 5000,
+    totalRunners: participationData?.runnersCount ?? 0,
+  };
+};
 
 export const getRunsData = async (userID) => {
   try {
@@ -28,7 +35,10 @@ export const getRunsData = async (userID) => {
     const runsData =
       data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
 
-    const fastestRunEver = parseRun(_.minBy(data.years.map((year) => year.results).flat(), "r_time"));
+    const fastestRunEverRaw = parseRun(
+      _.minBy(data.years.map((year) => year.results).flat(), "r_time")
+    );
+    const fastestRunEver = parseRun(fastestRunEverRaw);
     // console.log("FASTEST RUN EVER");
     // console.log(fastestRunEver);
     const runs = runsData.map(parseRun);

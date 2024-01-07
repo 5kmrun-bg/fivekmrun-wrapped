@@ -21,7 +21,7 @@ const getOfficialRunsStats = (data) => {
   if (!runs) {
     return null;
   }
-  
+
   return {
     activeWeeks: runs.length,
     totalDistance: _.sumBy(runs, "distance"),
@@ -29,6 +29,7 @@ const getOfficialRunsStats = (data) => {
     fastestRun: _.minBy(runs, "time"),
     fastestRunEver: runs.fastestRunEver,
     bestPositionRun: _.minBy(runs, "position"),
+    bestRelativePosition: _.min(runs, (run) => run.position / run.totalRunners),
     locationBreakdown: _.chain(runs)
       .countBy("location")
       .toPairs()
@@ -51,7 +52,7 @@ const getSelfieRunsStats = (data) => {
     totalTime: _.sumBy(selfieRuns, "time"),
     fastestRun: _.minBy(selfieRuns, "time"),
     fastestRunEver: selfieRuns.fastestRunEver,
-    bestPositionRun: _.chain(selfieRuns).sortBy("position").take(3).value(),
+    bestPositionRun: _.minBy(selfieRuns, "position"),
   };
 };
 
@@ -66,6 +67,6 @@ const getXLRunsStats = (data) => {
     numRaces: xlRuns.length,
     totalDistance: _.sumBy(xlRuns, "distance"),
     totalTime: _.sumBy(xlRuns, "time"),
-    bestPositionRun: _.chain(xlRuns).sortBy("position").take(3).value(),
+    bestPositionRun: _.minBy(xlRuns, "position"),
   };
 };

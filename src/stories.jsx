@@ -217,20 +217,48 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
     ),
   },
   {
-    content: () => (
-      <Story bgImage={BG.xlrun}>
-        <Story.Header>Постижения</Story.Header>
-        <Story.Content>
-          <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
-          <p>
-            Участникът с най-много първи места в 5kmrun се казва{" "}
-            <span className="accent">Цветан Бахчеванов</span>. Той е завоювал
-            цели <span className="accent">237</span> първи места от 482 бягания,
-            организирани в Бургас.
-          </p>
-        </Story.Content>
-      </Story>
-    ),
+    content: () => {
+      const bestOfficial = officialRuns?.bestRelativePosition;
+      const bestSlefie = selfieRuns?.bestPositionRun;
+      return (
+        <Story bgImage={BG.xlrun}>
+          <Story.Header>Постижения</Story.Header>
+          <Story.Content>
+            <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
+            <p>
+              Участникът с най-много първи места в 5kmrun се казва{" "}
+              <span className="accent">Цветан Бахчеванов</span>. Той е завоювал
+              цели <span className="accent">237</span> първи места от 482
+              бягания, организирани в Бургас.
+            </p>
+
+            {bestOfficial && (
+              <p>
+                Същинско бягане:
+                <br />{" "}
+                <span className="accent">
+                  {`${bestOfficial.date.toLocaleDateString()} (${
+                    bestOfficial.location
+                  }) - ${bestOfficial.position} място от ${
+                    bestOfficial.totalRunners
+                  } уастници`}
+                </span>
+              </p>
+            )}
+            {selfieRuns?.activeWeeks > 0 && (
+              <p>
+                Selfie бягане: <br />{" "}
+                <span className="accent">
+                  {`${bestSlefie.startDate.toLocaleDateString()} - ${
+                    bestSlefie.position
+                  } място`}
+                </span>
+              </p>
+            )}
+          </Story.Content>
+        </Story>
+      );
+    },
   },
 ];
 
