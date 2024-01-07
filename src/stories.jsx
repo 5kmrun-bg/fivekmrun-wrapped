@@ -78,12 +78,11 @@ const createOfficialRunsStories = (officialRuns) => {
           <Story.Header>Паркове</Story.Header>
           <Story.Content>
             <p>
-              Тази година сме изключително радостни, че добавихме нов град, в
-              който се провеждат същински бягания, а именно - Плевен.
-              Благодарности за екипа от доброволци, който направи това възможно.
+              Тази година сме изключително радостни, че добавихме Плевен към
+              градовете, в които се провеждат същински бягания.
             </p>
             <p>
-              Любимият ти парк за бягане през {YEAR} бе{" "}
+              Твоят любимият парк за бягане през {YEAR} бе{" "}
               <span className="accent">{topParkName}</span> с {topParkCount}{" "}
               бягания.
             </p>
@@ -92,12 +91,15 @@ const createOfficialRunsStories = (officialRuns) => {
                 Ето и твоята класация на паркове по брой бягания през {YEAR}:
               </p>
             )}
-            {locationBreakdown.length > 1 &&
-              locationBreakdown.map(([parkName, parkCount], index) => (
-                <p key={index}>
-                  {index + 1}. {parkName} - {parkCount} бягания
-                </p>
-              ))}
+            {locationBreakdown.length > 1 && (
+              <ol>
+                {locationBreakdown.map(([parkName, parkCount], index) => (
+                  <li key={index}>
+                    {parkName} - {parkCount} бягания
+                  </li>
+                ))}
+              </ol>
+            )}
             {locationBreakdown.length < 6 && (
               <p>
                 Нашето предизвикателство за теб за следващата година е да бягаш
@@ -299,11 +301,11 @@ export const createStories = (stats) => {
     stories.push(...createSelfieStories(selfieRuns));
   }
 
-  stories.push(...createAchievementsStories(stats));
-
   if (xlRuns?.numRaces > 0) {
     stories.push(...createXLRunStories(xlRuns));
   }
+
+  stories.push(...createAchievementsStories(stats));
 
   return stories;
 };
