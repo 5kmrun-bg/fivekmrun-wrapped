@@ -172,7 +172,7 @@ const createXLRunStories = (xlRuns) => [
   },
 ];
 
-const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
+const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
   {
     content: () => (
       <Story bgImage={BG.kids}>
@@ -222,6 +222,7 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
     content: () => {
       const bestOfficial = officialRuns?.bestRelativePosition;
       const bestSlefie = selfieRuns?.bestPositionRun;
+      const bestXLRun = xlRuns?.bestPositionRun;
       return (
         <Story bgImage={BG.xlrun}>
           <Story.Header>Постижения</Story.Header>
@@ -247,13 +248,26 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
                 </span>
               </p>
             )}
-            {selfieRuns?.activeWeeks > 0 && (
+            {bestSlefie && (
               <p>
                 Selfie бягане: <br />{" "}
                 <span className="accent">
                   {`${bestSlefie.startDate.toLocaleDateString()} - ${
                     bestSlefie.position
                   } място`}
+                </span>
+              </p>
+            )}
+            {bestXLRun && (
+              <p>
+                XLRun състезание:
+                <br />{" "}
+                <span className="accent">
+                  {`${bestXLRun.date.toLocaleDateString()} (${
+                    bestXLRun.location
+                  }) - ${bestXLRun.position} място от ${
+                    bestXLRun.totalRunners
+                  } уастници`}
                 </span>
               </p>
             )}
