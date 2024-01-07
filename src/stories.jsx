@@ -104,7 +104,7 @@ const createOfficialRunsStories = (officialRuns) => {
               <p>
                 Нашето предизвикателство за теб за следващата година е да бягаш
                 и в останалите {6 - locationBreakdown.length} парка, в които
-                нямате бягания през {YEAR}.
+                нямаш бягания през {YEAR}.
               </p>
             )}
             {locationBreakdown.length == 6 && (
@@ -244,7 +244,7 @@ const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
                     bestOfficial.location
                   }) - ${bestOfficial.position} място от ${
                     bestOfficial.totalRunners
-                  } уастници`}
+                  } участници`}
                 </span>
               </p>
             )}
