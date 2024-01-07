@@ -1,12 +1,17 @@
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
+import eventParticipation from "./2023-xlrun-participation.json";
+
 
 const URL = `${BASE_URL}xlrun/user/`;
 
 const parseRun = (json) => {
+  const id = json["r_eventid"];
   const distance = parseFloat(json["e_len"]);
+  const participationData = eventParticipation[id];
+
   return {
-    id: json["r_id"],
+    id,
     isSelfie: false,
     eventId: json["r_eventid"],
     location: json["n_name"],
@@ -16,6 +21,7 @@ const parseRun = (json) => {
     time: json["r_time"],
     pace: timeInSecondsToPace(json["r_time"], distance),
     position: json["r_finish_pos"],
+    totalRunners: participationData?.runnersCount ?? 0,
   };
 };
 
