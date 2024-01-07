@@ -4,7 +4,8 @@ import { writeFileSync } from "fs";
 const HOUR = 60 * 60 * 1000;
 const YEAR = 2023;
 
-const PAST_EVENTS_URL = "https://5kmrun.bg/api/5kmrun/results/";
+const PAST_EVENTS_URL = "https://5kmrun.bg/api/xlrun/results/";
+const RESULTS_URL = "https://5kmrun.bg/api/xlrun/result/";
 
 const getEventsBatch = async (page) => {
   const param = `/${page * 50}`;
@@ -23,8 +24,11 @@ const getEventsBatch = async (page) => {
   return events;
 };
 
-console.log(await getEventsBatch(0));
-console.log(await getEventsBatch(1));
+const getResults = async (event) => {
+  const response = await fetch(`${RESULTS_URL}${event.id}`);
+  const rawResults = await response.json();
+  return rawResults;
+};
 
 const allEvents = [];
 let batch = 0;
@@ -43,4 +47,21 @@ const yearEvents = allEvents.filter(
 
 console.log(`Found ${yearEvents.length} for year ${YEAR}`);
 
-writeFileSync(`${YEAR}-events.json`, JSON.stringify(yearEvents, null, 2));
+writeFileSync(`${YEAR}-xlrun-events.json`, JSON.stringify(yearEvents, null, 2));
+
+const eventParticipation = {};
+for (const event of yearEvents) {
+  const results = await getResults(event);
+  console.log(
+    `Event: ${event.id}-${event.name} date:${event.date} runners: ${results.length}`
+  );
+  eventParticipation[event.id] = {
+    ...event,
+    runnersCount: results.length,
+  };
+}
+
+writeFileSync(
+  `${YEAR}-xlrun-participation.json`,
+  JSON.stringify(eventParticipation, null, 2)
+);
