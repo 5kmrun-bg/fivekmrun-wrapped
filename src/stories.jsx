@@ -227,14 +227,13 @@ const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
         <Story bgImage={BG.xlrun}>
           <Story.Header>Постижения</Story.Header>
           <Story.Content>
-            <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
             <p>
               Участникът с най-много първи места в 5kmrun се казва{" "}
               <span className="accent">Цветан Бахчеванов</span>. Той е завоювал
               цели <span className="accent">237</span> първи места от 482
               бягания, организирани в Бургас.
             </p>
-
+            <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
             {bestOfficial && (
               <p>
                 Същинско бягане:
