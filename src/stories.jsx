@@ -266,7 +266,7 @@ const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
                     bestXLRun.location
                   }) - ${bestXLRun.position} място от ${
                     bestXLRun.totalRunners
-                  } уастници`}
+                  } участници`}
                 </span>
               </p>
             )}
