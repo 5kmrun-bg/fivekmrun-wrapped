@@ -3,6 +3,8 @@ import joroAvatar from "./assets/joro-avatar.png";
 import { formatDistance, formatTime } from "./utils";
 import "./StatsPage.scss";
 import { YEAR } from "./api/constants";
+import React, { useCallback, useRef } from 'react';
+import { toBlob } from 'html-to-image';
 
 const BG = {
   selfie: "https://5kmrun.bg/images/HaderSelfie.png",
@@ -80,7 +82,6 @@ const createOfficialRunsStories = (officialRuns) => {
             <p>
               Тази година сме изключително радостни, че добавихме нов град, в
               който се провеждат същински бягания, а именно - Плевен.
-              Благодарности за екипа от доброволци, който направи това възможно.
             </p>
             <p>
               Любимият ти парк за бягане през {YEAR} бе{" "}
@@ -158,13 +159,54 @@ const createXLRunStories = (xlRuns) => [
           </p>
           <p>
             Разстоянието, което пробяга по пътеките в района на София е{" "}
-            <span className="accent">{xlRuns.totalDistance}</span> километра
+            <span className="accent">{formatDistance(xlRuns.totalDistance)}</span> километра
           </p>
           <p>
             Общо време:{" "}
             <span className="accent">{formatTime(xlRuns.totalTime)}</span>
           </p>
         </Story.Content>
+      </Story>
+    ),
+  },
+];
+
+export const imageRef = React.createRef();
+
+const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
+  {
+    content: () => (
+      <Story bgImage={BG.run}>
+          <Story.Content>
+            <div ref={imageRef}>
+              <h1>{YEAR}-та с 5kmrun.bg</h1>
+              <p>
+                Бегач: <span className="accent">{ user?.name }</span>
+              </p>
+              {user.status && (
+                <p>
+                  Статус: <span className="accent">{ user.status }</span>
+                </p>
+              )}
+              <p>
+                Общо участия в събития на 5kmrun:
+                <span className="accent"> {officialRuns?.activeWeeks + selfieRuns?.activeWeeks + xlRuns?.numRaces} </span>
+              </p>
+              <p>
+                Общо пробягани километри:
+                <span className="accent"> {formatDistance(officialRuns?.totalDistance + selfieRuns?.totalDistance + xlRuns?.totalDistance)} километра</span>
+              </p>
+              <p>
+                Общо време в бягане с 5kmrun:
+                <span className="accent"> {formatTime(officialRuns?.totalTime + selfieRuns?.totalTime + xlRuns?.totalTime)} </span>
+              </p>
+              <p>
+                Най-добро време за 5 километра: 
+                <span className="accent"> {formatTime(Math.min(officialRuns?.fastestRun?.time, selfieRuns?.fastestRun?.time))}</span>
+              </p>
+            </div>
+
+          </Story.Content>
       </Story>
     ),
   },
@@ -262,6 +304,7 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
   },
 ];
 
+
 export const createStories = (stats) => {
   if (!stats) return null;
   const { user, officialRuns, selfieRuns, xlRuns } = stats;
@@ -299,10 +342,16 @@ export const createStories = (stats) => {
     stories.push(...createSelfieStories(selfieRuns));
   }
 
-  stories.push(...createAchievementsStories(stats));
+  if (officialRuns?.activeWeeks > 0 || selfieRuns?.activeWeeks > 0 || xlRuns?.numRaces > 0) {
+    stories.push(...createAchievementsStories(stats));
+  }
 
   if (xlRuns?.numRaces > 0) {
     stories.push(...createXLRunStories(xlRuns));
+  }
+
+  if (officialRuns?.activeWeeks > 0 || selfieRuns?.activeWeeks > 0 || xlRuns?.numRaces > 0) {
+    stories.push(...createSummaryStories(stats));
   }
 
   return stories;
