@@ -4,7 +4,6 @@ import { formatDistance, formatTime } from "./utils";
 import "./StatsPage.scss";
 import { YEAR } from "./api/constants";
 import { BG } from "./preload-images";
-import React from "react";
 
 const Story = ({ children, bgImage, bgPosition = "center" }) => {
   return (
@@ -167,14 +166,13 @@ const createXLRunStories = (xlRuns) => [
   },
 ];
 
-export const imageRef = React.createRef();
-
 const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
   {
+    canShare: true,
     content: () => (
       <Story bgImage={BG.run}>
           <Story.Content>
-            <div ref={imageRef}>
+            <div>
               <h1>{YEAR}-та с 5kmrun.bg</h1>
               <p>
                 Бегач: <span className="accent">{ user?.name }</span>
