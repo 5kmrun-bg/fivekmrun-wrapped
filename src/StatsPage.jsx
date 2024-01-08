@@ -41,7 +41,9 @@ export const StatsPage = ({ userId }) => {
     await toBlob(snapshotElement);
     await toBlob(snapshotElement);
 
-    const imageBlob = await toBlob(snapshotElement);
+    const imageBlob = await toBlob(snapshotElement, {
+      backgroundColor: "#242424",
+    });
     const shareData = {
       files: [
         new File([imageBlob], shareFileName, {
