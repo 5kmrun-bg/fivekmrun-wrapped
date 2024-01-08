@@ -5,13 +5,20 @@ import "./StatsPage.scss";
 import { YEAR } from "./api/constants";
 import { BG } from "./preload-images";
 
-const Story = ({ children, bgImage, bgPosition = "center" }) => {
+const Story = ({
+  children,
+  bgImage,
+  bgPosition = "center",
+  centerContent = false,
+}) => {
   return (
     <>
       <img className={`story-bg-img ${bgPosition}`} src={bgImage} alt="bg" />
       <div className="story-bg-overlay" />
       <div className="story">
-        <div className="story-content">{children}</div>
+        <div className={`story-content ${centerContent && "centered"}`}>
+          {children}
+        </div>
       </div>
     </>
   );
@@ -154,7 +161,10 @@ const createXLRunStories = (xlRuns) => [
           </p>
           <p>
             Разстоянието, което пробяга по пътеките в района на София е{" "}
-            <span className="accent">{formatDistance(xlRuns.totalDistance)}</span> километра
+            <span className="accent">
+              {formatDistance(xlRuns.totalDistance)}
+            </span>{" "}
+            километра
           </p>
           <p>
             Общо време:{" "}
@@ -170,37 +180,60 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
   {
     canShare: true,
     content: () => (
-      <Story bgImage={BG.run}>
-          <Story.Content>
-            <div>
-              <h1>{YEAR}-та с 5kmrun.bg</h1>
+      <Story bgImage={BG.run} centerContent>
+        <Story.Content>
+          <div>
+            <h1 style={{ marginBottom: "24px" }}>{YEAR}-та с 5kmrun.bg</h1>
+            <p>
+              Бегач: <span className="accent">{user?.name}</span>
+            </p>
+            {user.status && (
               <p>
-                Бегач: <span className="accent">{ user?.name }</span>
+                Статус: <span className="accent">{user.status}</span>
               </p>
-              {user.status && (
-                <p>
-                  Статус: <span className="accent">{ user.status }</span>
-                </p>
-              )}
-              <p>
-                Общо участия в събития на 5kmrun:
-                <span className="accent"> {officialRuns?.activeWeeks + selfieRuns?.activeWeeks + xlRuns?.numRaces} </span>
-              </p>
-              <p>
-                Общо пробягани километри:
-                <span className="accent"> {formatDistance(officialRuns?.totalDistance + selfieRuns?.totalDistance + xlRuns?.totalDistance)} километра</span>
-              </p>
-              <p>
-                Общо време в бягане с 5kmrun:
-                <span className="accent"> {formatTime(officialRuns?.totalTime + selfieRuns?.totalTime + xlRuns?.totalTime)} </span>
-              </p>
-              <p>
-                Най-добро време за 5 километра: 
-                <span className="accent"> {formatTime(Math.min(officialRuns?.fastestRun?.time, selfieRuns?.fastestRun?.time))}</span>
-              </p>
-            </div>
-
-          </Story.Content>
+            )}
+            <p>
+              Общо участия в събития на 5kmrun:
+              <span className="accent">
+                {officialRuns?.activeWeeks +
+                  selfieRuns?.activeWeeks +
+                  xlRuns?.numRaces}
+              </span>
+            </p>
+            <p>
+              Общо пробягани километри:
+              <span className="accent">
+                {formatDistance(
+                  officialRuns?.totalDistance +
+                    selfieRuns?.totalDistance +
+                    xlRuns?.totalDistance
+                )}
+                километра
+              </span>
+            </p>
+            <p>
+              Общо време в бягане с 5kmrun:
+              <span className="accent">
+                {formatTime(
+                  officialRuns?.totalTime +
+                    selfieRuns?.totalTime +
+                    xlRuns?.totalTime
+                )}
+              </span>
+            </p>
+            <p>
+              Най-добро време за 5 километра:
+              <span className="accent">
+                {formatTime(
+                  Math.min(
+                    officialRuns?.fastestRun?.time,
+                    selfieRuns?.fastestRun?.time
+                  )
+                )}
+              </span>
+            </p>
+          </div>
+        </Story.Content>
       </Story>
     ),
   },
@@ -311,7 +344,6 @@ const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
   },
 ];
 
-
 export const createStories = (stats) => {
   if (!stats) return null;
   const { user, officialRuns, selfieRuns, xlRuns } = stats;
@@ -355,7 +387,11 @@ export const createStories = (stats) => {
 
   stories.push(...createAchievementsStories(stats));
 
-  if (officialRuns?.activeWeeks > 0 || selfieRuns?.activeWeeks > 0 || xlRuns?.numRaces > 0) {
+  if (
+    officialRuns?.activeWeeks > 0 ||
+    selfieRuns?.activeWeeks > 0 ||
+    xlRuns?.numRaces > 0
+  ) {
     stories.push(...createSummaryStories(stats));
   }
 
