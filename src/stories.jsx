@@ -3,15 +3,8 @@ import joroAvatar from "./assets/joro-avatar.png";
 import { formatDistance, formatTime } from "./utils";
 import "./StatsPage.scss";
 import { YEAR } from "./api/constants";
-import React, { useCallback, useRef } from 'react';
-import { toBlob } from 'html-to-image';
-
-const BG = {
-  selfie: "https://5kmrun.bg/images/HaderSelfie.png",
-  kids: "https://5kmrun.bg/files/header_4_large.jpg",
-  xlrun: "https://5kmrun.bg/files/header_3_large.jpg",
-  run: "https://5kmrun.bg/files/header_5_large.jpg",
-};
+import { BG } from "./preload-images";
+import React from "react";
 
 const Story = ({ children, bgImage, bgPosition = "center" }) => {
   return (
@@ -80,11 +73,11 @@ const createOfficialRunsStories = (officialRuns) => {
           <Story.Header>Паркове</Story.Header>
           <Story.Content>
             <p>
-              Тази година сме изключително радостни, че добавихме нов град, в
-              който се провеждат същински бягания, а именно - Плевен.
+              Тази година сме изключително радостни, че добавихме Плевен към
+              градовете, в които се провеждат същински бягания.
             </p>
             <p>
-              Любимият ти парк за бягане през {YEAR} бе{" "}
+              Твоят любимият парк за бягане през {YEAR} бе{" "}
               <span className="accent">{topParkName}</span> с {topParkCount}{" "}
               бягания.
             </p>
@@ -93,17 +86,20 @@ const createOfficialRunsStories = (officialRuns) => {
                 Ето и твоята класация на паркове по брой бягания през {YEAR}:
               </p>
             )}
-            {locationBreakdown.length > 1 &&
-              locationBreakdown.map(([parkName, parkCount], index) => (
-                <p key={index}>
-                  {index + 1}. {parkName} - {parkCount} бягания
-                </p>
-              ))}
+            {locationBreakdown.length > 1 && (
+              <ol>
+                {locationBreakdown.map(([parkName, parkCount], index) => (
+                  <li key={index}>
+                    {parkName} - {parkCount} бягания
+                  </li>
+                ))}
+              </ol>
+            )}
             {locationBreakdown.length < 6 && (
               <p>
                 Нашето предизвикателство за теб за следващата година е да бягаш
                 и в останалите {6 - locationBreakdown.length} парка, в които
-                нямате бягания през {YEAR}.
+                нямаш бягания през {YEAR}.
               </p>
             )}
             {locationBreakdown.length == 6 && (
@@ -212,7 +208,7 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
   },
 ];
 
-const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
+const createAchievementsStories = ({ officialRuns, selfieRuns, xlRuns }) => [
   {
     content: () => (
       <Story bgImage={BG.kids}>
@@ -262,18 +258,18 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
     content: () => {
       const bestOfficial = officialRuns?.bestRelativePosition;
       const bestSlefie = selfieRuns?.bestPositionRun;
+      const bestXLRun = xlRuns?.bestPositionRun;
       return (
         <Story bgImage={BG.xlrun}>
           <Story.Header>Постижения</Story.Header>
           <Story.Content>
-            <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
             <p>
               Участникът с най-много първи места в 5kmrun се казва{" "}
               <span className="accent">Цветан Бахчеванов</span>. Той е завоювал
               цели <span className="accent">237</span> първи места от 482
               бягания, организирани в Бургас.
             </p>
-
+            <p>Ето и твоите най-добри класирания през {YEAR} година:</p>
             {bestOfficial && (
               <p>
                 Същинско бягане:
@@ -283,17 +279,30 @@ const createAchievementsStories = ({ officialRuns, selfieRuns }) => [
                     bestOfficial.location
                   }) - ${bestOfficial.position} място от ${
                     bestOfficial.totalRunners
-                  } уастници`}
+                  } участници`}
                 </span>
               </p>
             )}
-            {selfieRuns?.activeWeeks > 0 && (
+            {bestSlefie && (
               <p>
                 Selfie бягане: <br />{" "}
                 <span className="accent">
                   {`${bestSlefie.startDate.toLocaleDateString()} - ${
                     bestSlefie.position
                   } място`}
+                </span>
+              </p>
+            )}
+            {bestXLRun && (
+              <p>
+                XLRun състезание:
+                <br />{" "}
+                <span className="accent">
+                  {`${bestXLRun.date.toLocaleDateString()} (${
+                    bestXLRun.location
+                  }) - ${bestXLRun.position} място от ${
+                    bestXLRun.totalRunners
+                  } участници`}
                 </span>
               </p>
             )}
@@ -342,13 +351,11 @@ export const createStories = (stats) => {
     stories.push(...createSelfieStories(selfieRuns));
   }
 
-  if (officialRuns?.activeWeeks > 0 || selfieRuns?.activeWeeks > 0 || xlRuns?.numRaces > 0) {
-    stories.push(...createAchievementsStories(stats));
-  }
-
   if (xlRuns?.numRaces > 0) {
     stories.push(...createXLRunStories(xlRuns));
   }
+
+  stories.push(...createAchievementsStories(stats));
 
   if (officialRuns?.activeWeeks > 0 || selfieRuns?.activeWeeks > 0 || xlRuns?.numRaces > 0) {
     stories.push(...createSummaryStories(stats));
