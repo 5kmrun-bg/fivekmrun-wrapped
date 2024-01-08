@@ -1,13 +1,24 @@
 import { useEffect } from "react";
 import joroAvatar from "./assets/joro-avatar.png";
+import selfie from "./assets/backgrounds/selfie.png";
+import kids from "./assets/backgrounds/kids.jpg";
+import xlrun from "./assets/backgrounds/xlrun.jpg";
+import run from "./assets/backgrounds/5kmrun.jpg";
 
 const IMAGES = [
-  "https://5kmrun.bg/files/header_3_large.jpg",
-  "https://5kmrun.bg/files/header_4_large.jpg",
-  "https://5kmrun.bg/files/header_5_large.jpg",
-  "https://5kmrun.bg/images/HaderSelfie.png",
+  selfie,
+  kids,
+  xlrun,
+  run,
   joroAvatar,
 ];
+
+export const BG = {
+  selfie,
+  kids,
+  xlrun,
+  run,
+};
 
 const preloadImage = (src) =>
   new Promise((resolve, reject) => {

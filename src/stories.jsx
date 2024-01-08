@@ -3,13 +3,7 @@ import joroAvatar from "./assets/joro-avatar.png";
 import { formatDistance, formatTime } from "./utils";
 import "./StatsPage.scss";
 import { YEAR } from "./api/constants";
-
-const BG = {
-  selfie: "https://5kmrun.bg/images/HaderSelfie.png",
-  kids: "https://5kmrun.bg/files/header_4_large.jpg",
-  xlrun: "https://5kmrun.bg/files/header_3_large.jpg",
-  run: "https://5kmrun.bg/files/header_5_large.jpg",
-};
+import { BG } from "./preload-images";
 
 const Story = ({ children, bgImage, bgPosition = "center" }) => {
   return (

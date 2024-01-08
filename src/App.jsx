@@ -1,6 +1,6 @@
 import { StatsPage } from "./StatsPage";
 import { IDPage } from "./IDPage";
-import usePreloadImages from "./use-preload-images";
+import usePreloadImages from "./preload-images";
 
 const App = () => {
   usePreloadImages();
