@@ -69,7 +69,7 @@ export const StatsPage = ({ userId }) => {
       <Stories
         stories={stories}
         storyContainerStyles={{ borderRadius: 12, overflow: "hidden" }}
-        defaultInterval={1000}
+        defaultInterval={15_000}
         width={Math.min(window.innerWidth - PADDING * 2, 500)}
         height={Math.min(window.innerHeight - PADDING * 2, 900)}
         onStoryStart={handleStoryStart}
