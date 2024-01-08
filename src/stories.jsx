@@ -193,7 +193,7 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
               </p>
             )}
             <p>
-              Общо участия в събития на 5kmrun:
+              Общо участия в събития на 5kmrun:{" "}
               <span className="accent">
                 {officialRuns?.activeWeeks +
                   selfieRuns?.activeWeeks +
@@ -201,7 +201,7 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
               </span>
             </p>
             <p>
-              Общо пробягани километри:
+              Общо пробягани километри:{" "}
               <span className="accent">
                 {formatDistance(
                   officialRuns?.totalDistance +
@@ -212,7 +212,7 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
               </span>
             </p>
             <p>
-              Общо време в бягане с 5kmrun:
+              Общо време в бягане с 5kmrun:{" "}
               <span className="accent">
                 {formatTime(
                   officialRuns?.totalTime +
@@ -222,7 +222,7 @@ const createSummaryStories = ({ user, officialRuns, selfieRuns, xlRuns }) => [
               </span>
             </p>
             <p>
-              Най-добро време за 5 километра:
+              Най-добро време за 5 километра:{" "}
               <span className="accent">
                 {formatTime(
                   Math.min(
