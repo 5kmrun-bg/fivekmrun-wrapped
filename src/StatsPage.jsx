@@ -7,6 +7,7 @@ import { createStories } from "./stories";
 import "./StatsPage.scss";
 import { ShareButton } from "./ShareButton";
 import { downloadImage } from "./utils";
+import usePreloadImages from "./preload-images";
 
 const PADDING = 16;
 const StatsStyle = { "--stats-padding": `${PADDING}px` };
@@ -15,12 +16,11 @@ const shareFileName = "5kmrun-wrapped.png";
 export const StatsPage = ({ userId }) => {
   const [stories, setStories] = useState(null);
   const [showShare, setShowShare] = useState(false);
+  const imagesPreloaded = usePreloadImages();
 
   useEffect(() => {
     const load = async () => {
       const stats = await loadStats(userId);
-      console.log("Data loaded: ");
-      console.log(stats);
       const stories = createStories(stats);
       setStories(stories);
     };
@@ -53,7 +53,8 @@ export const StatsPage = ({ userId }) => {
     }
   };
 
-  if (!stories) return <div className="stats-loading">Зареждане...</div>;
+  if (!stories || !imagesPreloaded)
+    return <div className="stats-loading">Зареждане...</div>;
 
   return (
     <div className="stats-page" style={StatsStyle}>

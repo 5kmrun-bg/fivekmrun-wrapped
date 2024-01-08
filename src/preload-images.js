@@ -1,17 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import joroAvatar from "./assets/joro-avatar.png";
-import selfie from "./assets/backgrounds/selfie.png";
+import selfie from "./assets/backgrounds/selfie.jpg";
 import kids from "./assets/backgrounds/kids.jpg";
 import xlrun from "./assets/backgrounds/xlrun.jpg";
 import run from "./assets/backgrounds/5kmrun.jpg";
 
-const IMAGES = [
-  selfie,
-  kids,
-  xlrun,
-  run,
-  joroAvatar,
-];
+const IMAGES = [selfie, kids, xlrun, run, joroAvatar];
 
 export const BG = {
   selfie,
@@ -31,22 +25,28 @@ const preloadImage = (src) =>
     window.preloadedAssets[src] = img;
   });
 
-const preloadImages = async (images) => {
-  console.log(`Preloading ${IMAGES.length} assets ...`);
-
-  try {
-    await Promise.all(images.map(preloadImage));
-    console.log(`Finished preloading ${IMAGES.length} assets`);
-  } catch (err) {
-    console.error(`Failed to preload asset: ${err}`);
-  }
-};
-
 const usePreloadImages = () => {
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+
   useEffect(() => {
-    window.preloadedAssets = {};
+    const preloadImages = async (images) => {
+      console.log(`Preloading ${IMAGES.length} assets ...`);
+
+      try {
+        window.preloadedAssets = {};
+        await Promise.allSettled(images.map(preloadImage));
+        console.log(`Finished preloading ${IMAGES.length} assets`);
+      } catch (err) {
+        console.error(`Failed to preload asset: ${err}`);
+      } finally {
+        setImagesPreloaded(true);
+      }
+    };
+
     preloadImages(IMAGES);
   }, []);
+
+  return imagesPreloaded;
 };
 
 export default usePreloadImages;
