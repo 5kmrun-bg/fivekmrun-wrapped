@@ -13,8 +13,8 @@ export const formatDistance = (distance) => {
   if (!distance) {
     return "";
   }
-  return `${Math.round((distance / 1000)*10)/10}`;
-}
+  return `${Math.round((distance / 1000) * 10) / 10}`;
+};
 
 export const formatTime = (timeInSeconds) => {
   if (!timeInSeconds) {
@@ -27,4 +27,16 @@ export const formatTime = (timeInSeconds) => {
   return `${hours ? `${hours}ч ` : ""}${minutes ? `${minutes}мин ` : ""}${
     seconds ? `${seconds}сек` : ""
   }`;
-}
+};
+export const downloadImage = (blob, fileName) => {
+  const a = document.createElement("a");
+  const url = window.URL.createObjectURL(blob);
+
+  document.body.appendChild(a);
+  a.style = "display: none";
+  a.href = url;
+  a.download = fileName;
+  a.click();
+
+  window.URL.revokeObjectURL(url);
+};

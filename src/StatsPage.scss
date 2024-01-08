@@ -11,6 +11,8 @@
 }
 
 .stats-page {
+  --border-radius: 12px;
+
   padding: var(--stats-padding);
   display: flex;
   place-content: center;
@@ -23,6 +25,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.5;
+    border-radius: var(--border-radius);
 
     &.center {
       object-position: center;
@@ -46,6 +49,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: var(--border-radius);
   }
 
   .story {
@@ -68,7 +72,6 @@
       margin-top: 0px;
       padding-inline-start: 1rem;
     }
-
 
     h1,
     p {
