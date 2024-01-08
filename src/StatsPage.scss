@@ -69,7 +69,6 @@
       padding-inline-start: 1rem;
     }
 
-
     h1,
     p {
       z-index: 100;
@@ -97,6 +96,33 @@
       z-index: 0;
       right: 20px;
       height: 40%;
+    }
+  }
+
+  .share-button {
+    position: absolute;
+    display: flex;
+    bottom: 10%;
+    gap: 10px;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    z-index: 999;
+    
+    background-color: rgb(218, 3, 56);
+    box-shadow:rgb(0, 0, 0) 0px 0px 15px;
+
+    transition: transform 0.2s ease-out;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    span {
+      margin-bottom: 4px;
     }
   }
 }
