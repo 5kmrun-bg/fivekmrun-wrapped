@@ -35,6 +35,12 @@ export const StatsPage = ({ userId }) => {
     const snapshotElement = document.querySelector(".story")?.parentElement;
     if (!snapshotElement) return;
 
+    // HACKY: Fix buggy image not loading on IOS
+    // ref: https://github.com/bubkoo/html-to-image/issues/361#issuecomment-1442120307)
+    await toBlob(snapshotElement);
+    await toBlob(snapshotElement);
+    await toBlob(snapshotElement);
+
     const imageBlob = await toBlob(snapshotElement);
     const shareData = {
       files: [
@@ -45,6 +51,8 @@ export const StatsPage = ({ userId }) => {
       title: "Моята година с 5kmrun.bg",
       text: "Моята година с 5kmrun.bg",
     };
+
+    console.log(shareData);
 
     if (navigator.canShare?.(shareData)) {
       await navigator.share(shareData);
