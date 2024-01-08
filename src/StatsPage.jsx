@@ -6,20 +6,11 @@ import { loadStats } from "./stats";
 import { createStories } from "./stories";
 import "./StatsPage.scss";
 import { ShareButton } from "./ShareButton";
+import { downloadImage } from "./utils";
 
 const PADDING = 16;
 const StatsStyle = { "--stats-padding": `${PADDING}px` };
-
-var downloadImage = (blob, fileName) => {
-  var a = document.createElement("a");
-  document.body.appendChild(a);
-  a.style = "display: none";
-  var url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = fileName;
-  a.click();
-  window.URL.revokeObjectURL(url);
-};
+const shareFileName = "5kmrun-wrapped.png";
 
 export const StatsPage = ({ userId }) => {
   const [stories, setStories] = useState(null);
@@ -47,7 +38,7 @@ export const StatsPage = ({ userId }) => {
     const imageBlob = await toBlob(snapshotElement);
     const shareData = {
       files: [
-        new File([imageBlob], "image.png", {
+        new File([imageBlob], shareFileName, {
           type: imageBlob.type,
         }),
       ],
@@ -58,7 +49,7 @@ export const StatsPage = ({ userId }) => {
     if (navigator.canShare?.(shareData)) {
       await navigator.share(shareData);
     } else {
-      await downloadImage(imageBlob, "5kmrun-wrapped.png");
+      await downloadImage(imageBlob, shareFileName);
     }
   };
 
