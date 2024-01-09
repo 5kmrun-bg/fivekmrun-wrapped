@@ -1,13 +1,4 @@
-@font-face {
-  font-family: Plovdiv;
-  src: url("assets/fonts/PlovdivDisplay-Regular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: Plovdiv;
-  font-weight: bold;
-  src: url("assets/fonts/PlovdivDisplay-Bold.otf") format("opentype");
-}
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -23,7 +14,7 @@ html {
 }
 
 body {
-  font-family: Plovdiv, sans-serif;
+  font-family: "Nunito", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -44,7 +35,7 @@ body {
 
   * {
     box-sizing: border-box;
-    font-family: Plovdiv, sans-serif;
+    font-family: "Nunito", sans-serif;
   }
 }
 

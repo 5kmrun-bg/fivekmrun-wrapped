@@ -6,6 +6,7 @@
   align-items: center;
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
+  font-weight: bold;
   border-radius: 0.5rem;
   z-index: 999;
 
@@ -18,9 +19,5 @@
   &:focus {
     transform: scale(1.05);
     opacity: 1;
-  }
-
-  span {
-    margin-bottom: 4px;
   }
 }
