@@ -57,7 +57,7 @@ const createOfficialRunsStories = (officialRuns) => {
               .
             </p>
             <p>
-              Откакто започнахме с първото събитие на 5kmrun преди 8 години сме
+              Откакто започнахме с първото събитие на 5kmrun преди повече от 10 години сме
               организирали <span className="accent">2472</span> бягания.
             </p>
             <p>
