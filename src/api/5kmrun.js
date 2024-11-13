@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
-import eventParticipation from "./2023-5kmrun-participation.json";
+import eventParticipation from "./data/5kmrun-participation.json";
 
 const URL = `${BASE_URL}5kmrun/user/`;
 

@@ -1,8 +1,8 @@
 import fetch from "node-fetch";
-import { writeFileSync } from "fs";
+import { copyFileSync, writeFileSync } from "fs";
 
 const HOUR = 60 * 60 * 1000;
-const YEAR = 2023;
+const YEAR = 2024;
 
 const PAST_EVENTS_URL = "https://5kmrun.bg/api/xlrun/results/";
 const RESULTS_URL = "https://5kmrun.bg/api/xlrun/result/";
@@ -64,4 +64,9 @@ for (const event of yearEvents) {
 writeFileSync(
   `${YEAR}-xlrun-participation.json`,
   JSON.stringify(eventParticipation, null, 2)
+);
+
+copyFileSync(
+  `${YEAR}-xlrun-participation.json`,
+  "../api/data/xlrun-participation.json"
 );
