@@ -8,7 +8,7 @@ const URL = `${BASE_URL}selfie/user/`;
 const parseUserData = (userID, data) => ({
   id: userID,
   name: `${data.u_name} ${data.u_surname}`,
-  status: (data.u_runs > 50 || data.u_runs_s > 50) ? "Почетен Легионер" : null,
+  status: data.u_runs > 50 || data.u_runs_s > 50 ? "Почетен Легионер" : null,
   avatarUrl: data.pic,
   bestTime: data.u_best_time_s,
   bestTimeEver: data.u_best_time_ever_s,
@@ -38,7 +38,7 @@ const parseSelfieRun = (json) => ({
 
 export const getSelfieRuns = async (userID) => {
   try {
-    const response = await fetch(`${URL}${userID}`);
+    const response = await fetch(`${URL}${userID}`, { mode: "same-origin" });
     const data = await response.json();
     // console.log("RAW Selfie DATA");
     // console.log(data);

@@ -26,7 +26,7 @@ const parseRun = (json) => {
 
 export const getXLRuns = async (userID) => {
   try {
-    const response = await fetch(`${URL}${userID}`);
+    const response = await fetch(`${URL}${userID}`, { mode: "same-origin" });
     const data = await response.json();
     // console.log("RAW XLRUN DATA");
     // console.log(data);
