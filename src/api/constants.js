@@ -3,4 +3,4 @@ export const BASE_URL =
     ? "http://localhost:5173/api/"
     : "https://5kmrun.bg/api/";
 
-export const YEAR = 2023;
+export const YEAR = 2024;
