@@ -27,7 +27,7 @@ const parseRun = (json) => {
 
 export const getRunsData = async (userID) => {
   try {
-    const response = await fetch(`${URL}${userID}`, { mode: "same-origin" });
+    const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
     // console.log("RAW Runs DATA");
     // console.log(data);

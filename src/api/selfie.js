@@ -38,7 +38,7 @@ const parseSelfieRun = (json) => ({
 
 export const getSelfieRuns = async (userID) => {
   try {
-    const response = await fetch(`${URL}${userID}`, { mode: "same-origin" });
+    const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
     // console.log("RAW Selfie DATA");
     // console.log(data);
