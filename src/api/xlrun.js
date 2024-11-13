@@ -6,7 +6,7 @@ const URL = `${BASE_URL}xlrun/user/`;
 
 const parseRun = (json) => {
   const id = json["r_eventid"];
-  const distance = parseFloat(json["e_len"]);
+  const distance = parseFloat(json["e_len"]) * 1000;
   const participationData = eventParticipation[id];
 
   return {
@@ -28,12 +28,14 @@ export const getXLRuns = async (userID) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
-    // console.log("RAW XLRUN DATA");
-    // console.log(data);
+    console.log("RAW XLRUN DATA");
+    console.log(data);
 
     const runsData =
       data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
     const runs = runsData.map(parseRun);
+    console.log("XLRUN DATA");
+    console.log(runs);
     return runs;
   } catch (error) {
     console.log(error);
