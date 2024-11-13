@@ -1,7 +1,6 @@
 import { BASE_URL, YEAR } from "./constants";
 import { timeInSecondsToPace } from "../utils";
-import eventParticipation from "./2023-xlrun-participation.json";
-
+import eventParticipation from "./data/xlrun-participation.json";
 
 const URL = `${BASE_URL}xlrun/user/`;
 

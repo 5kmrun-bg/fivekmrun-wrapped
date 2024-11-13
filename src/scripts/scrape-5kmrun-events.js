@@ -1,8 +1,8 @@
 import fetch from "node-fetch";
-import { writeFileSync } from "fs";
+import { writeFileSync, copyFileSync } from "fs";
 
 const HOUR = 60 * 60 * 1000;
-const YEAR = 2023;
+const YEAR = 2024;
 
 const EVENTS_URL = "https://5kmrun.bg/api/5kmrun/results/";
 const RESULTS_URL = "https://5kmrun.bg/api/5kmrun/result/";
@@ -31,7 +31,6 @@ const getResults = async (event) => {
   return rawResults;
 };
 
-
 const allEvents = [];
 let batch = 0;
 while (
@@ -49,7 +48,10 @@ const yearEvents = allEvents.filter(
 
 console.log(`Found ${yearEvents.length} for year ${YEAR}`);
 
-writeFileSync(`${YEAR}-5kmrun-events.json`, JSON.stringify(yearEvents, null, 2));
+writeFileSync(
+  `${YEAR}-5kmrun-events.json`,
+  JSON.stringify(yearEvents, null, 2)
+);
 
 const eventParticipation = {};
 for (const event of yearEvents) {
@@ -66,4 +68,9 @@ for (const event of yearEvents) {
 writeFileSync(
   `${YEAR}-5kmrun-participation.json`,
   JSON.stringify(eventParticipation, null, 2)
+);
+
+copyFileSync(
+  `${YEAR}-5kmrun-participation.json`,
+  "../api/data/5kmrun-participation.json"
 );
