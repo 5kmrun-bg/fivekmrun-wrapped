@@ -2,11 +2,10 @@ import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mkcert from "vite-plugin-mkcert";
-import crossOriginIsolation from "vite-plugin-cross-origin-isolation";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), mkcert(), crossOriginIsolation()],
+  plugins: [react(), mkcert()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -22,10 +21,6 @@ export default defineConfig({
         // Target host
         target: "https://5kmrun.bg/",
         changeOrigin: true,
-        // rewrite: (path) => {
-        //   const result = path.replace(/^\/api/, "/api/5kmrun");
-        //   return result;
-        // },
       },
     },
   },

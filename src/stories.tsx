@@ -1,4 +1,4 @@
-import { cn, formatDistance, formatTime } from "./lib/utils";
+import { formatDistance, formatTime } from "./lib/utils";
 import { YEAR } from "./api/constants";
 import { loadStats } from "@/stats";
 import { Step } from "@/components/slideshow";
