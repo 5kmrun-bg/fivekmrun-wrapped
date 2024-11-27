@@ -8,9 +8,10 @@ import loadMP4Module from "https://unpkg.com/mp4-wasm@1.0.6";
 
 const imageFileName = `5kmrun-${YEAR}.png`;
 const videoFileName = `5kmrun-${YEAR}.mp4`;
+const title = `${YEAR} с 5kmrun.bg`;
 
 const fps = 1; // 1 frame per second is enough
-const sotryDuration = 3;
+const stroyDuration = 3;
 const width = 720;
 const height = 1280;
 
@@ -28,7 +29,7 @@ export const shareVideo = async (elements: HTMLElement[]) => {
       canvasHeight: height,
     });
 
-    for (let i = 0; i < sotryDuration * fps; i++) {
+    for (let i = 0; i < stroyDuration * fps; i++) {
       await encoder.addFrame(canvas);
     }
   }
@@ -57,14 +58,12 @@ export const shareImage = async (element: HTMLElement) => {
 };
 
 const shareOrDownload = async (blob: Blob, fileName: string) => {
-  const file = new File([blob], fileName, {
-    type: blob.type,
-  });
+  const file = new File([blob], fileName, { type: blob.type });
 
   const shareData = {
     files: [file],
-    title: "Моята година с 5kmrun.bg",
-    text: "Моята година с 5kmrun.bg",
+    title,
+    text: title,
   };
 
   if (navigator.canShare?.(shareData)) {
