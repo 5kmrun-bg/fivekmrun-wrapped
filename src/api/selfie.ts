@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getYear } from "date-fns";
 import { BASE_URL, YEAR } from "./constants";
-import { timeInSecondsToPace } from "../utils";
+import { timeInSecondsToPace } from "../lib/utils";
 import _ from "lodash";
 
 const URL = `${BASE_URL}selfie/user/`;
 
-const parseUserData = (userID, data) => ({
+const parseUserData = (userID: number, data: any) => ({
   id: userID,
   name: `${data.u_name} ${data.u_surname}`,
   status: data.u_runs > 50 || data.u_runs_s > 50 ? "Почетен Легионер" : null,
@@ -16,7 +17,7 @@ const parseUserData = (userID, data) => ({
   runsCountEver: data.u_runs_s,
 });
 
-const parseSelfieRun = (json) => ({
+const parseSelfieRun = (json: any) => ({
   id: json["s_id"],
   isSelfie: true,
   userId: json["s_uid"],
@@ -36,7 +37,7 @@ const parseSelfieRun = (json) => ({
   stravaLink: json["s_strava_link"],
 });
 
-export const getSelfieRuns = async (userID) => {
+export const getSelfieRuns = async (userID: number) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
@@ -47,12 +48,12 @@ export const getSelfieRuns = async (userID) => {
     const allRuns = data.runs.map(parseSelfieRun);
     const fastestRunEver = _.minBy(allRuns, "time");
 
-    const runs = allRuns.filter((run) => getYear(run.startDate) === YEAR);
+    const runs = allRuns.filter((run: any) => getYear(run.startDate) === YEAR);
     runs.fastestRunEver = fastestRunEver;
 
     return { user, runs };
   } catch (error) {
     console.log(error);
-    return { user: {}, runs: [] };
+    return { user: { name: "" }, runs: [] };
   }
 };

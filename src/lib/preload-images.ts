@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import joroAvatar from "./assets/joro-avatar.png";
-import selfie from "./assets/backgrounds/selfie.jpg";
-import kids from "./assets/backgrounds/kids.jpg";
-import xlrun from "./assets/backgrounds/xlrun.jpg";
-import run from "./assets/backgrounds/5kmrun.jpg";
+import selfie from "@/assets/backgrounds/selfie.jpg";
+import kids from "@/assets/backgrounds/kids.jpg";
+import xlrun from "@/assets/backgrounds/xlrun.jpg";
+import run from "@/assets/backgrounds/5kmrun.jpg";
 
-const IMAGES = [selfie, kids, xlrun, run, joroAvatar];
+declare global {
+  interface Window {
+    preloadedAssets: Record<string, unknown>;
+  }
+}
+
+const IMAGES = [selfie, kids, xlrun, run];
 
 export const BG = {
   selfie,
@@ -14,7 +19,7 @@ export const BG = {
   run,
 };
 
-const preloadImage = (src) =>
+const preloadImage = (src: string) =>
   new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => resolve(src);
@@ -29,7 +34,7 @@ const usePreloadImages = () => {
   const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
   useEffect(() => {
-    const preloadImages = async (images) => {
+    const preloadImages = async (images: string[]) => {
       console.log(`Preloading ${IMAGES.length} assets ...`);
 
       try {

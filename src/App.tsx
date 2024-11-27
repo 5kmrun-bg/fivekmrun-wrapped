@@ -1,5 +1,5 @@
-import { StatsPage } from "./StatsPage";
-import { IDPage } from "./IDPage";
+import { IDPage } from "./id-page";
+import { StatsPage } from "./stats-page";
 
 const App = () => {
   const userId = parseInt(window.location.pathname.replace("/", ""));

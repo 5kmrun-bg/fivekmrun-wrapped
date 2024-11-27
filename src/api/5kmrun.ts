@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from "lodash";
 import { BASE_URL, YEAR } from "./constants";
-import { timeInSecondsToPace } from "../utils";
-import eventParticipation from "./data/5kmrun-participation.json";
+import { timeInSecondsToPace } from "../lib/utils";
+import rawEventParticipation from "./data/5kmrun-participation.json";
 
 const URL = `${BASE_URL}5kmrun/user/`;
 
-const parseRun = (json) => {
-  const id = json["r_eventid"];
+const eventParticipation = rawEventParticipation as Record<
+  string,
+  { runnersCount: number }
+>;
+
+const parseRun = (json: any) => {
+  const id: string = json["r_eventid"];
   const participationData = eventParticipation[id];
 
   return {
@@ -25,7 +31,7 @@ const parseRun = (json) => {
   };
 };
 
-export const getRunsData = async (userID) => {
+export const getRunsData = async (userID: number) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
@@ -33,10 +39,10 @@ export const getRunsData = async (userID) => {
     // console.log(data);
 
     const runsData =
-      data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
+      data.years.find((year: any) => year.yr === `${YEAR}`)?.results ?? [];
 
     const fastestRunEverRaw = parseRun(
-      _.minBy(data.years.map((year) => year.results).flat(), "r_time")
+      _.minBy(data.years.map((year: any) => year.results).flat(), "r_time")
     );
     const fastestRunEver = parseRun(fastestRunEverRaw);
     // console.log("FASTEST RUN EVER");

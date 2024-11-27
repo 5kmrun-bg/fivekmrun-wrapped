@@ -1,4 +1,11 @@
-export const timeInSecondsToPace = (timeInSeconds, km = 5) => {
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export const timeInSecondsToPace = (timeInSeconds: number, km = 5) => {
   if (!timeInSeconds) {
     return "";
   }
@@ -9,14 +16,14 @@ export const timeInSecondsToPace = (timeInSeconds, km = 5) => {
   return `${min}:${sec < 10 ? "0" : ""}${sec}мин/км`;
 };
 
-export const formatDistance = (distance) => {
+export const formatDistance = (distance: number) => {
   if (!distance) {
     return "";
   }
   return `${Math.round((distance / 1000) * 10) / 10}`;
 };
 
-export const formatTime = (timeInSeconds) => {
+export const formatTime = (timeInSeconds: number) => {
   if (!timeInSeconds) {
     return "";
   }
@@ -28,12 +35,12 @@ export const formatTime = (timeInSeconds) => {
     seconds ? `${seconds}сек` : ""
   }`;
 };
-export const downloadImage = (blob, fileName) => {
+export const downloadImage = (blob: Blob, fileName: string) => {
   const a = document.createElement("a");
   const url = window.URL.createObjectURL(blob);
 
   document.body.appendChild(a);
-  a.style = "display: none";
+  a.style.display = "none";
   a.href = url;
   a.download = fileName;
   a.click();

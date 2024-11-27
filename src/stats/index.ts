@@ -1,21 +1,22 @@
-import { getData } from "../api";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from "lodash";
+import { getData } from "../api";
 
-export const loadStats = async (userID) => {
+export const loadStats = async (userID: number) => {
   const data = await getData(userID);
 
   // console.log("PARSED DATA:");
   // console.log(data);
 
   return {
-    user: data.user,
+    user: data.user!,
     officialRuns: getOfficialRunsStats(data),
     selfieRuns: getSelfieRunsStats(data),
     xlRuns: getXLRunsStats(data),
   };
 };
 
-const getOfficialRunsStats = (data) => {
+const getOfficialRunsStats = (data: any) => {
   const { runs } = data;
 
   if (!runs) {
@@ -29,7 +30,10 @@ const getOfficialRunsStats = (data) => {
     fastestRun: _.minBy(runs, "time"),
     fastestRunEver: runs.fastestRunEver,
     bestPositionRun: _.minBy(runs, "position"),
-    bestRelativePosition: _.min(runs, (run) => run.position / run.totalRunners),
+    bestRelativePosition: _.minBy(
+      runs,
+      (run: any) => run.position / run.totalRunners
+    ),
     locationBreakdown: _.chain(runs)
       .countBy("location")
       .toPairs()
@@ -39,7 +43,7 @@ const getOfficialRunsStats = (data) => {
   };
 };
 
-const getSelfieRunsStats = (data) => {
+const getSelfieRunsStats = (data: any) => {
   const { selfieRuns } = data;
 
   if (!selfieRuns) {
@@ -56,7 +60,7 @@ const getSelfieRunsStats = (data) => {
   };
 };
 
-const getXLRunsStats = (data) => {
+const getXLRunsStats = (data: any) => {
   const { xlRuns } = data;
 
   if (!xlRuns) {

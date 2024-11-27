@@ -1,10 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BASE_URL, YEAR } from "./constants";
-import { timeInSecondsToPace } from "../utils";
-import eventParticipation from "./data/xlrun-participation.json";
+import { timeInSecondsToPace } from "../lib/utils";
+import rawEventParticipation from "./data/xlrun-participation.json";
 
 const URL = `${BASE_URL}xlrun/user/`;
 
-const parseRun = (json) => {
+const eventParticipation = rawEventParticipation as Record<
+  string,
+  { runnersCount: number }
+>;
+
+const parseRun = (json: any) => {
   const id = json["r_eventid"];
   const distance = parseFloat(json["e_len"]) * 1000;
   const participationData = eventParticipation[id];
@@ -24,7 +30,7 @@ const parseRun = (json) => {
   };
 };
 
-export const getXLRuns = async (userID) => {
+export const getXLRuns = async (userID: number) => {
   try {
     const response = await fetch(`${URL}${userID}`);
     const data = await response.json();
@@ -32,7 +38,7 @@ export const getXLRuns = async (userID) => {
     // console.log(data);
 
     const runsData =
-      data.years.find((year) => year.yr === `${YEAR}`)?.results ?? [];
+      data.years.find((year: any) => year.yr === `${YEAR}`)?.results ?? [];
     const runs = runsData.map(parseRun);
     // console.log("XLRUN DATA");
     // console.log(runs);
