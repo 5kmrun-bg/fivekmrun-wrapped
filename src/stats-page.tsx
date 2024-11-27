@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { loadStats } from "./stats";
-import usePreloadImages from "@/lib/preload-images";
 import { Slideshow, Step } from "@/components/slideshow";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { createStories } from "@/stories";
 import { Button } from "@/components/ui/button";
 import { shareImage } from "@/lib/share";
-import { SquareArrowOutUpRight, Instagram } from "lucide-react";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 const Loading = () => (
   <div className="flex w-dvh h-dvh justify-center items-center text-2xl">
@@ -60,14 +59,6 @@ export const StatsPage = ({ userId }: { userId: number }) => {
             <SquareArrowOutUpRight />
             <span>Сподели</span>
           </Button>
-
-          {/* <Button
-            className="text-white text-lg rounded shadow bg-accent hover:bg-accent hover:scale-110 transition-all"
-            onClick={handleShare}
-          >
-            <Instagram />
-            <span>Сподели</span>
-          </Button> */}
         </div>
       )}
     </div>
