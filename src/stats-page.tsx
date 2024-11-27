@@ -4,79 +4,14 @@ import { Slideshow, Step } from "@/components/slideshow";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { createStories } from "@/stories";
 import { Button } from "@/components/ui/button";
-import { shareImage } from "@/lib/share";
+import { shareImage, shareVideo } from "@/lib/share";
 import { Instagram, SquareArrowOutUpRight } from "lucide-react";
-import { toJpeg } from "html-to-image";
-import { downloadImage } from "./lib/utils";
-
-//TODO: check if we can use the npm package
-import loadMP4Module from "https://unpkg.com/mp4-wasm@1.0.6";
 
 const Loading = () => (
   <div className="flex w-dvh h-dvh justify-center items-center text-2xl">
     Зареждане...
   </div>
 );
-
-const videoFileName = "video.mp4";
-
-async function generateImageBlob(snapshotElement: HTMLElement) {
-  const dataURI = await toJpeg(snapshotElement, { quality: 0.95 });
-  return dataURI;
-}
-
-const cerateCanvasVideo = async (snapshotElement: HTMLElement) => {
-  const fps = 30;
-  const duration = 5; // seconds
-  const width = 720;
-  const height = 1280;
-
-  const MP4 = await loadMP4Module();
-  const encoder = MP4.createWebCodecsEncoder({
-    width,
-    height,
-    fps,
-  });
-
-  const imageDataUri = await generateImageBlob(snapshotElement);
-  const image = new Image();
-  image.width = width;
-  image.height = height;
-  image.src = imageDataUri;
-  image.onload = async () => {
-    const imageBitmap = await createImageBitmap(image);
-    for (let i = 0; i < duration * fps; i++) {
-      // Add bitmap to encoder
-      await encoder.addFrame(imageBitmap);
-    }
-    const buf = await encoder.end();
-
-    console.log(buf);
-
-    const videoBlob = new Blob([buf], { type: "video/mp4" });
-
-    console.log(videoBlob);
-
-    const videoFile = new File([videoBlob], videoFileName, {
-      type: videoBlob.type,
-    });
-
-    console.log(videoFile);
-    const shareData = {
-      files: [videoFile],
-      title: "Моята година с 5kmrun.bg",
-      text: "Моята година с 5kmrun.bg",
-    };
-
-    // console.log(video);
-
-    // if (navigator.canShare?.(shareData)) {
-    //   await navigator.share(shareData);
-    // } else {
-    await downloadImage(videoBlob, videoFileName);
-    // }
-  };
-};
 
 export const StatsPage = ({ userId }: { userId: number }) => {
   const slideshowRef = useRef<HTMLDivElement>(null);
@@ -108,7 +43,8 @@ export const StatsPage = ({ userId }: { userId: number }) => {
   const handleShareVideo = async () => {
     const snapshotElement = slideshowRef.current;
     if (snapshotElement) {
-      cerateCanvasVideo(snapshotElement);
+      const elements = [...snapshotElement.children] as HTMLElement[];
+      shareVideo(elements);
     }
   };
 
