@@ -15,7 +15,6 @@ export default defineConfig({
 
   server: {
     host: true,
-    https: true,
     // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
     proxy: {
       // Match the endpoint you want to proxy
