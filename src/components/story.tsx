@@ -1,10 +1,17 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import { motion } from "motion/react";
+
+const transition = { duration: 0.5, delay: 0.3 };
+const variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
 
 export const Story = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -12,6 +19,16 @@ export const Story = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      transition={transition}
+      variants={variants}
+      viewport={{ once: true }}
+    >
+      {children}
+    </motion.div>
+  </div>
 ));
 Story.displayName = "Story";
