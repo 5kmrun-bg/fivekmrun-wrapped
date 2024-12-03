@@ -15,7 +15,7 @@ export const Story = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "w-full h-full flex flex-col justify-center items-stretch gap-4 p-4 rounded pt-8 text-xl font-bold",
+      "w-full h-full flex flex-col justify-center items-stretch gap-7 p-4 rounded pt-8 text-xl font-bold bg-[#1D1E22]",
       className
     )}
     {...props}
@@ -26,6 +26,7 @@ export const Story = React.forwardRef<
       transition={transition}
       variants={variants}
       viewport={{ once: true }}
+      className="flex flex-col gap-4"
     >
       {children}
     </motion.div>
