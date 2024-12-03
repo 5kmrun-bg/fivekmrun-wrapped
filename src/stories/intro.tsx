@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 
