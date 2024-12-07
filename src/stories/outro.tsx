@@ -1,17 +1,17 @@
 import { Story } from "@/components/story";
-import { YellowHeader, YellowNumber, Label } from "./common";
+import { YellowHeader, YellowText, Label } from "./common";
 
 export const OutroTotals = () => (
   <Story>
     <p>
-      <YellowNumber>2472</YellowNumber>
+      <YellowText>2472</YellowText>
       <Label> организирани бягания</Label>
     </p>
     <p>
-      <YellowNumber>1.3</YellowNumber> <Label> милиона км заедно</Label>
+      <YellowText>1.3</YellowText> <Label> милиона км заедно</Label>
     </p>
     <p>
-      <YellowNumber>13</YellowNumber>
+      <YellowText>13</YellowText>
       <Label> години дивжение</Label>
     </p>
   </Story>

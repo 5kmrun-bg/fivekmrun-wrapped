@@ -1,7 +1,7 @@
 import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 import { formatDistance, formatTimeShort } from "@/lib/utils";
-import { RedHeader, RedNumber, Label } from "./common";
+import { RedHeader, RedText, Label } from "./common";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -16,15 +16,15 @@ export const OfficialRunsStory = ({
     <RedHeader>5KM RUN</RedHeader>
 
     <p>
-      <RedNumber>{activeWeeks}</RedNumber>
+      <RedText>{activeWeeks}</RedText>
       <Label> участия в 5kmrun</Label>
     </p>
     <p>
-      <RedNumber>{formatDistance(totalDistance)}</RedNumber>{" "}
+      <RedText>{formatDistance(totalDistance)}</RedText>{" "}
       <Label> пробягани км</Label>
     </p>
     <p>
-      <RedNumber>{formatTimeShort(totalTime)}</RedNumber>
+      <RedText>{formatTimeShort(totalTime)}</RedText>
       <Label> общо време</Label>
     </p>
   </Story>

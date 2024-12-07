@@ -14,7 +14,7 @@ export const RedHeader = (props: any) => (
   <h1 className={cn(redGradient, "text-5xl self-center")} {...props} />
 );
 
-export const RedNumber = (props: any) => (
+export const RedText = (props: any) => (
   <span className={cn(redGradient, "text-4xl")} {...props} />
 );
 
@@ -22,7 +22,7 @@ export const BlueHeader = (props: any) => (
   <h1 className={cn(blueGradient, "text-5xl self-center")} {...props} />
 );
 
-export const BlueNumber = (props: any) => (
+export const BlueText = (props: any) => (
   <span className={cn(blueGradient, "text-4xl")} {...props} />
 );
 
@@ -30,7 +30,7 @@ export const YellowHeader = (props: any) => (
   <h1 className={cn(yellowGradient, "text-5xl self-center")} {...props} />
 );
 
-export const YellowNumber = (props: any) => (
+export const YellowText = (props: any) => (
   <span className={cn(yellowGradient, "text-4xl")} {...props} />
 );
 
