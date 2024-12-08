@@ -23,6 +23,19 @@ export const formatDistance = (distance: number) => {
   return `${Math.round((distance / 1000) * 10) / 10}`;
 };
 
+export const formatTimeShort = (timeInSeconds: number) => {
+  if (!timeInSeconds) {
+    return "";
+  }
+  const hours = Math.floor(timeInSeconds / 3600);
+  const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
+  const seconds = timeInSeconds - hours * 3600 - minutes * 60;
+
+  return `${hours ? `${hours}’ ` : ""}${minutes ? `${minutes}’ ` : ""}${
+    seconds ? `${seconds}’’` : ""
+  }`;
+};
+
 export const formatTime = (timeInSeconds: number) => {
   if (!timeInSeconds) {
     return "";
@@ -35,6 +48,7 @@ export const formatTime = (timeInSeconds: number) => {
     seconds ? `${seconds}сек` : ""
   }`;
 };
+
 export const downloadImage = (blob: Blob, fileName: string) => {
   const a = document.createElement("a");
   const url = window.URL.createObjectURL(blob);
