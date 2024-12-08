@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { SlideShowProgress } from "./slideshow-progress";
 import Autoplay from "embla-carousel-autoplay";
+import logo from "./logo.svg";
 
 export type Step = {
   id: string;
@@ -80,6 +81,12 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
           autoplayApi={autoplayRef.current}
           className="absolute top-0 left-0 right-0 pointer-events-none z-10 p-4"
         />
+        <img
+          src={logo}
+          alt="logo"
+          className="absolute top-10 left-4 size-15 z-10"
+        />
+
         <CarouselContent ref={ref}>
           {steps.map((card, idx) => (
             <CarouselItem key={card.id} id={"item" + idx}>
