@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -29,6 +30,8 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
     const [isDragging, setIsDragging] = useState(false);
     const dragStartX = useRef(0);
 
+    const [activeIndex, setActiveIndex] = useState(0);
+
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
       setIsDragging(false);
       dragStartX.current = e.clientX;
@@ -57,7 +60,11 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
 
     useEffect(() => {
       if (api && onStep) {
-        const onSelect = () => onStep(steps[api.selectedScrollSnap()]);
+        const onSelect = () => {
+          const selected = api.selectedScrollSnap();
+          onStep(steps[selected]);
+          setActiveIndex(selected);
+        };
 
         api.on("select", onSelect);
 
@@ -90,7 +97,9 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
         <CarouselContent ref={ref}>
           {steps.map((card, idx) => (
             <CarouselItem key={card.id} id={"item" + idx}>
-              {card.content}
+              {React.cloneElement(card.content as any, {
+                isActive: idx === activeIndex, // Pass active state to each story
+              })}
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -1,12 +1,5 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { motion } from "motion/react";
-
-const transition = { duration: 0.5, delay: 0.3 };
-const variants = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
-};
 
 export const Story = React.forwardRef<
   HTMLDivElement,
@@ -20,16 +13,7 @@ export const Story = React.forwardRef<
     )}
     {...props}
   >
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      transition={transition}
-      variants={variants}
-      viewport={{ once: true }}
-      className="flex flex-col gap-4"
-    >
-      {children}
-    </motion.div>
+    {children}
   </div>
 ));
 Story.displayName = "Story";
