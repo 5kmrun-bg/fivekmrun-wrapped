@@ -71,7 +71,7 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
       <Carousel
         setApi={setApi}
         plugins={[autoplayRef.current]}
-        className="relative cursor-grab active:cursor-grabbing h-full w-full"
+        className="relative cursor-grab active:cursor-grabbing h-full w-full select-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
