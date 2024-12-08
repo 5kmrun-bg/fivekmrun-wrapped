@@ -2,7 +2,7 @@ import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 import { RedText } from "./common";
 import { cn } from "@/lib/utils";
-import introBg from "./intro-bg.svg";
+import backgroundSrc from "./intro-bg.svg";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -15,7 +15,7 @@ const squareAndRound = "w-full aspect-square rounded-full";
 export const IntroStory = ({ user }: Props) => (
   <Story className="relative justify-start">
     <img
-      src={introBg}
+      src={backgroundSrc}
       className="absolute inset-x-0 bottom-8 w-full object-cover"
     />
 
