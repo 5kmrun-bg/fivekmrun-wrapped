@@ -3,6 +3,8 @@ import { loadStats } from "@/stats";
 import { formatDistance, formatTimeShort } from "@/lib/utils";
 import { RedHeader, RedText, Label } from "./common";
 import backgroundSrc from "./official-runs-bg.svg";
+import runnerSrc from "./runner.svg";
+import { motion } from "motion/react";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -16,7 +18,20 @@ export const OfficialRunsStory = ({
   <Story>
     <RedHeader>5KM RUN</RedHeader>
 
-    <img src={backgroundSrc} className="max-w-none w-[calc(100%+2rem)] -mx-4" />
+    <div className="max-w-none w-[calc(100%+2rem)] -mx-4 relative">
+      <img src={backgroundSrc} className="w-full" />
+      <motion.img
+        src={runnerSrc}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          initial: { left: "-20%" },
+          visible: { left: "50%" },
+        }}
+        transition={{ duration: 0.4, delay: 3.5, ease: "easeOut" }}
+      />
+    </div>
 
     <p className="self-center">
       <RedText>{activeWeeks}</RedText>
