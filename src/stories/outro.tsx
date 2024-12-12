@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
 import { Story } from "@/components/story";
-import { YellowHeader, YellowText, Label } from "./common";
+import { YellowText, Label } from "./common";
 
 import backgroundSrc from "./assets/totals-bg.svg";
 import runnerSrc from "./assets/totals-star.svg";
+import respectSrc from "./assets/respect.webp";
 
 type Props = {
   isActive?: boolean;
@@ -11,8 +12,11 @@ type Props = {
 
 export const OutroTotals = ({ isActive }: Props) => (
   <Story>
-    <Label>През тази година ти допринесе към всичко това:</Label>
-
+    <p className="self-center text-center">
+      <Label className="normal-case text-2xl">
+        През тази година ти допринесе към всичко това:
+      </Label>
+    </p>
     <div className="max-w-none w-[calc(100%+2rem)] -mx-4 relative">
       <img src={backgroundSrc} className="w-full h-[168px]" />
       <motion.img
@@ -49,10 +53,18 @@ export const OutroTotals = ({ isActive }: Props) => (
 
 export const OutroThankyou = () => (
   <Story>
-    <YellowHeader>Благодарим ти</YellowHeader>
+    <div className="self-center text-center color-[#E7EFFF]">
+      <p className="text-4xl self-center text-center italic font-light pt-4">
+        Благодарим ти,
+      </p>
 
-    <p>
-      <Label>че беше част от нашето приключение през 2024!</Label>
-    </p>
+      <p className="normal-case text-xl font-light">
+        че беше част от нашето
+        <br />
+        приключение през 2024!
+      </p>
+    </div>
+
+    <img src={respectSrc} className="p-4" />
   </Story>
 );
