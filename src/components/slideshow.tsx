@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -8,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { SlideShowProgress } from "./slideshow-progress";
 import Autoplay from "embla-carousel-autoplay";
+import logo from "./logo.svg";
 
 export type Step = {
   id: string;
@@ -27,6 +29,8 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
 
     const [isDragging, setIsDragging] = useState(false);
     const dragStartX = useRef(0);
+
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
       setIsDragging(false);
@@ -56,7 +60,11 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
 
     useEffect(() => {
       if (api && onStep) {
-        const onSelect = () => onStep(steps[api.selectedScrollSnap()]);
+        const onSelect = () => {
+          const selected = api.selectedScrollSnap();
+          onStep(steps[selected]);
+          setActiveIndex(selected);
+        };
 
         api.on("select", onSelect);
 
@@ -70,7 +78,7 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
       <Carousel
         setApi={setApi}
         plugins={[autoplayRef.current]}
-        className="relative cursor-grab active:cursor-grabbing h-full w-full"
+        className="relative cursor-grab active:cursor-grabbing h-full w-full select-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -80,10 +88,18 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
           autoplayApi={autoplayRef.current}
           className="absolute top-0 left-0 right-0 pointer-events-none z-10 p-4"
         />
+        <img
+          src={logo}
+          alt="logo"
+          className="absolute top-10 left-4 size-15 z-10"
+        />
+
         <CarouselContent ref={ref}>
           {steps.map((card, idx) => (
             <CarouselItem key={card.id} id={"item" + idx}>
-              {card.content}
+              {React.cloneElement(card.content as any, {
+                isActive: idx === activeIndex, // Pass active state to each story
+              })}
             </CarouselItem>
           ))}
         </CarouselContent>
