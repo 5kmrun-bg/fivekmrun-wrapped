@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from "@/lib/utils";
+import { DOMAttributes } from "react";
+
+type Props = {
+  className?: string;
+} & DOMAttributes<HTMLElement>;
 
 const redGradient =
   "font-bold italic bg-gradient-to-r from-[#FF0D4D] to-[#FF5726] inline-block text-transparent bg-clip-text";
@@ -10,30 +15,42 @@ const blueGradient =
 const yellowGradient =
   "font-bold italic bg-gradient-to-r from-[#FFD900] to-[#FFBB00] inline-block text-transparent bg-clip-text";
 
-export const RedHeader = (props: any) => (
-  <h1 className={cn(redGradient, "text-5xl self-center")} {...props} />
+export const RedHeader = ({ className, ...rest }: Props) => (
+  <h1
+    className={cn(redGradient, "text-5xl self-center", className)}
+    {...rest}
+  />
 );
 
-export const RedText = (props: any) => (
-  <span className={cn(redGradient, "text-4xl mr-2")} {...props} />
+export const RedText = ({ className, ...rest }: Props) => (
+  <span className={cn(redGradient, "text-4xl mr-2", className)} {...rest} />
 );
 
-export const BlueHeader = (props: any) => (
-  <h1 className={cn(blueGradient, "text-5xl self-center")} {...props} />
+export const BlueHeader = ({ className, ...rest }: Props) => (
+  <h1
+    className={cn(blueGradient, "text-5xl self-center", className)}
+    {...rest}
+  />
 );
 
-export const BlueText = (props: any) => (
-  <span className={cn(blueGradient, "text-4xl mr-2")} {...props} />
+export const BlueText = ({ className, ...rest }: Props) => (
+  <span className={cn(blueGradient, "text-4xl mr-2", className)} {...rest} />
 );
 
-export const YellowHeader = (props: any) => (
-  <h1 className={cn(yellowGradient, "text-5xl self-center")} {...props} />
+export const YellowHeader = ({ className, ...rest }: Props) => (
+  <h1
+    className={cn(yellowGradient, "text-5xl self-center", className)}
+    {...rest}
+  />
 );
 
-export const YellowText = (props: any) => (
-  <span className={cn(yellowGradient, "text-4xl mr-2")} {...props} />
+export const YellowText = ({ className, ...rest }: Props) => (
+  <span className={cn(yellowGradient, "text-4xl mr-2", className)} {...rest} />
 );
 
-export const Label = (props: any) => (
-  <span className="text-lg uppercase font-bold color-[#E7EFFF]" {...props} />
+export const Label = ({ className, ...rest }: Props) => (
+  <span
+    className={cn("text-lg uppercase font-bold color-[#E7EFFF]", className)}
+    {...rest}
+  />
 );

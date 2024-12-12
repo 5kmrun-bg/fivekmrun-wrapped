@@ -1,10 +1,11 @@
+import { motion } from "motion/react";
 import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 import { formatDistance, formatTimeShort } from "@/lib/utils";
 import { RedHeader, RedText, Label } from "./common";
-import backgroundSrc from "./official-runs-bg.svg";
-import runnerSrc from "./runner.svg";
-import { motion } from "motion/react";
+
+import backgroundSrc from "./assets/official-bg.svg";
+import runnerSrc from "./assets/official-runner.svg";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -38,7 +39,7 @@ export const OfficialRunsStory = ({
             },
             visible: { left: "50%", opacity: 1 },
           }}
-          transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.5, type: "tween" }}
         />
       </div>
 

@@ -2,7 +2,7 @@ import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 import { RedText } from "./common";
 import { cn } from "@/lib/utils";
-import backgroundSrc from "./intro-bg.svg";
+import backgroundSrc from "./assets/2024-bg.svg";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
