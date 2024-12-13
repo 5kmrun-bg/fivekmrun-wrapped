@@ -4,8 +4,8 @@ import { Slideshow, Step } from "@/components/slideshow";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { createStories } from "@/stories";
 import { Button } from "@/components/ui/button";
-import { shareImage, shareVideo } from "@/lib/share";
-import { Instagram, SquareArrowOutUpRight } from "lucide-react";
+import { shareImage } from "@/lib/share";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 const Loading = () => (
   <div className="flex w-dvh h-dvh justify-center items-center text-2xl">
@@ -40,14 +40,6 @@ export const StatsPage = ({ userId }: { userId: number }) => {
     }
   };
 
-  const handleShareVideo = async () => {
-    const snapshotElement = slideshowRef.current;
-    if (snapshotElement) {
-      const elements = [...snapshotElement.children] as HTMLElement[];
-      shareVideo(elements);
-    }
-  };
-
   if (!stories) return <Loading />;
 
   return (
@@ -66,14 +58,6 @@ export const StatsPage = ({ userId }: { userId: number }) => {
           >
             <SquareArrowOutUpRight />
             <span>Сподели</span>
-          </Button>
-
-          <Button
-            className="text-white text-lg rounded shadow bg-accent hover:bg-accent hover:scale-110 transition-all"
-            onClick={handleShareVideo}
-          >
-            <Instagram />
-            <span>Video</span>
           </Button>
         </div>
       )}
