@@ -5,12 +5,13 @@ import { XLRunsStory } from "./xl-runs";
 import { SelfieRunsStory } from "./selfie-runs";
 import { IntroStory } from "./intro";
 import { OutroThankyou, OutroTotals } from "./outro";
+import { Summary } from "./summary";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
 export const createStories = (stats: Stats) => {
   if (!stats) return null;
-  const { user, officialRuns, selfieRuns, xlRuns } = stats;
+  const { user, officialRuns, selfieRuns, xlRuns, totals } = stats;
 
   const stories: Step[] = [];
 
@@ -48,6 +49,11 @@ export const createStories = (stats: Stats) => {
   stories.push({
     id: "outro-thanks",
     content: <OutroThankyou />,
+  });
+
+  stories.push({
+    id: "summary",
+    content: <Summary totals={totals} />,
   });
 
   return stories;

@@ -13,8 +13,21 @@ export const loadStats = async (userID: number) => {
     officialRuns: getOfficialRunsStats(data),
     selfieRuns: getSelfieRunsStats(data),
     xlRuns: getXLRunsStats(data),
+    totals: getTotalStats(data),
   };
 };
+
+const getTotalStats = (data: any) => {
+  const runs = getOfficialRunsStats(data);
+  const selfieRuns = getSelfieRunsStats(data);
+  const xlRuns = getXLRunsStats(data);
+
+  return {
+    participations: (runs?.activeWeeks ?? 0) + (selfieRuns?.activeWeeks ?? 0) + (xlRuns?.numRaces ?? 0),
+    kms: (runs?.totalDistance ?? 0) + (selfieRuns?.totalDistance ?? 0) + (xlRuns?.totalDistance ?? 0),
+    time: (runs?.totalTime ?? 0) + (selfieRuns?.totalTime ?? 0) + (xlRuns?.totalTime ?? 0),
+  }
+}
 
 const getOfficialRunsStats = (data: any) => {
   const { runs } = data;
