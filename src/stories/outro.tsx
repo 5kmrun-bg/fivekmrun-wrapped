@@ -46,7 +46,7 @@ export const OutroTotals = ({ isActive }: Props) => (
     </p>
     <p className="self-center">
       <YellowText>13</YellowText>
-      <Label> години дивжение</Label>
+      <Label> години движение</Label>
     </p>
   </Story>
 );
