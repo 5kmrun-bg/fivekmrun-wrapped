@@ -17,52 +17,20 @@ export const loadStats = async (userID: number) => {
   };
 };
 
-const toBase64Image = async (url: string) => {
-  try {
-    return await fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        return new Promise((res) => {
-          reader.onloadend = () => {
-            res(reader.result);
-          };
-        });
-      });
-  } catch (error) {
-    console.error("Error fetching image", error);
-    return undefined;
-  }
-};
-
 const getTotalStats = (data: any) => {
   const runs = getOfficialRunsStats(data);
   const selfieRuns = getSelfieRunsStats(data);
   const xlRuns = getXLRunsStats(data);
 
-  const userProfileImg = data.user?.avatarUrl as string | undefined;
-  const userProfileImgEncoded = userProfileImg
-    ? toBase64Image(userProfileImg)
-    : undefined;
-  console.log("userProfileImgEncoded", userProfileImgEncoded);
-
   return {
-    userProfileImg,
-    userProfileImgEncoded,
-    runs: runs?.activeWeeks ?? 0,
-    selfieRuns: selfieRuns?.activeWeeks ?? 0,
-    xlRuns: xlRuns?.numRaces ?? 0,
-    kms:
-      (runs?.totalDistance ?? 0) +
-      (selfieRuns?.totalDistance ?? 0) +
-      (xlRuns?.totalDistance ?? 0),
-    time:
-      (runs?.totalTime ?? 0) +
-      (selfieRuns?.totalTime ?? 0) +
-      (xlRuns?.totalTime ?? 0),
-  };
-};
+    userProfileImg: data.user?.avatarUrl,
+    runs: (runs?.activeWeeks ?? 0),
+    selfieRuns: (selfieRuns?.activeWeeks ?? 0),
+    xlRuns: (xlRuns?.numRaces ?? 0),
+    kms: (runs?.totalDistance ?? 0) + (selfieRuns?.totalDistance ?? 0) + (xlRuns?.totalDistance ?? 0),
+    time: (runs?.totalTime ?? 0) + (selfieRuns?.totalTime ?? 0) + (xlRuns?.totalTime ?? 0),
+  }
+}
 
 const getOfficialRunsStats = (data: any) => {
   const { runs } = data;
