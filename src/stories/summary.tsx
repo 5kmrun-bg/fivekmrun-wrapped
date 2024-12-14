@@ -16,7 +16,7 @@ export const Summary = ({
   totals: { runs, selfieRuns, xlRuns, kms, time, userProfileImg },
 }: Props) => {
   return (
-    <Story className="relative justify-start">
+    <Story className="relative justify-start" showLogo={false}>
       <img
         src={backgroundSrc}
         className="absolute inset-x-0 top-64 w-full object-cover"
