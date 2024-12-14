@@ -31,7 +31,7 @@ export const formatTimeShort = (timeInSeconds: number) => {
   const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
   const seconds = timeInSeconds - hours * 3600 - minutes * 60;
 
-  return `${hours ? `${hours}’ ` : ""}${minutes ? `${minutes}’ ` : ""}${
+  return `${hours ? `${hours}h ` : ""}${minutes ? `${minutes}’ ` : ""}${
     seconds ? `${seconds}’’` : ""
   }`;
 };
