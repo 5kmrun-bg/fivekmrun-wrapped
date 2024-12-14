@@ -50,10 +50,7 @@ export const YellowText = ({ className, ...rest }: Props) => (
 
 export const Label = ({ className, ...rest }: Props) => (
   <span
-    className={cn(
-      "all-small-caps text-lg font-bold color-[#E7EFFF]",
-      className
-    )}
+    className={cn("all-small-caps text-lg font-bold", className)}
     {...rest}
   />
 );

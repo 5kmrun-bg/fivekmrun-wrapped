@@ -53,7 +53,7 @@ export const OutroTotals = ({ isActive }: Props) => (
 
 export const OutroThankyou = () => (
   <Story>
-    <div className="self-center text-center color-[#E7EFFF]">
+    <div className="self-center text-center">
       <p className="text-4xl self-center text-center italic font-light pt-4">
         Благодарим ти,
       </p>
