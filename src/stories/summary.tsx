@@ -17,7 +17,7 @@ export const Summary = ({
   totals: { runs, selfieRuns, xlRuns, kms, time, userName },
 }: Props) => {
   return (
-    <Story className="relative justify-start">
+    <Story className="relative justify-start" showLogo={false}>
       <img
         src={backgroundSrc}
         className="absolute inset-x-0 top-64 w-full object-cover"
@@ -57,10 +57,9 @@ export const Summary = ({
       <p className="self-center mt-4">
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
-      </p>
+      </p>  
       <p className="self-center mt-4 text-lg font-bold color-[#E7EFFF] all-small-caps">
         Организирани бягания в <RedText>14</RedText> града всяка седмица.
-      </p>
     </Story>
   );
 };
