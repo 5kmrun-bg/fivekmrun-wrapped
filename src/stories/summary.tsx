@@ -14,7 +14,6 @@ type Props = {
 
 export const Summary = ({
   totals: { runs, selfieRuns, xlRuns, kms, time, userProfileImg },
-  isActive,
 }: Props) => {
   return (
     <Story className="relative justify-start">
