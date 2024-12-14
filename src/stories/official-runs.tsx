@@ -45,7 +45,7 @@ export const OfficialRunsStory = ({
 
       <p className="self-center">
         <RedText>{activeWeeks}</RedText>
-        <Label> участия в 5kmrun</Label>
+        <Label> участия в 5km run</Label>
       </p>
       <p className="self-center">
         <RedText>{formatDistance(totalDistance)}</RedText>{" "}
