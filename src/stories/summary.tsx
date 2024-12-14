@@ -1,10 +1,10 @@
 import { Story } from "@/components/story";
-import { BlueText, Label, RedHeader, RedText, YellowText } from "./common";
+import { Label, RedHeader, RedText } from "./common";
 import backgroundSrc from "./assets/2024-bg.svg";
 import { loadStats } from "@/stats";
 import { formatTimeShort } from "@/lib/utils";
 import { formatDistance } from "@/lib/utils";
-import logo from "../components/logo.svg";
+import logo from "@/assets/logo.svg";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -25,7 +25,6 @@ export const Summary = ({
       <RedHeader className="mt-4">5KM RUN</RedHeader>
       <img
         src={logo}
-        alt="logo"
         className="w-1/3 aspect-square rounded-full object-cover self-center"
       />
 
@@ -57,9 +56,10 @@ export const Summary = ({
       <p className="self-center mt-4">
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
-      </p>  
+      </p>
       <p className="self-center mt-4 text-lg font-bold color-[#E7EFFF] all-small-caps">
         Организирани бягания в <RedText>14</RedText> града всяка седмица.
+      </p>
     </Story>
   );
 };
