@@ -43,8 +43,8 @@ export const IntroStory = ({ user, isActive }: Props) => (
             "text-center content-center bg-slate-800"
           )}
         >
-          <span className="text-5xl italic font-light">Здравей,</span>
-          <RedText>{user.name}</RedText>
+          <span className="text-5xl italic font-light block">Здравей,</span>
+          <RedText className="text-4xl mx-4">{user.name}</RedText>
         </div>
       </div>
     </motion.div>
