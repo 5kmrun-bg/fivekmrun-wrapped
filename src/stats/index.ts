@@ -23,7 +23,9 @@ const getTotalStats = (data: any) => {
   const xlRuns = getXLRunsStats(data);
 
   return {
-    participations: (runs?.activeWeeks ?? 0) + (selfieRuns?.activeWeeks ?? 0) + (xlRuns?.numRaces ?? 0),
+    runs: (runs?.activeWeeks ?? 0),
+    selfieRuns: (selfieRuns?.activeWeeks ?? 0),
+    xlRuns: (xlRuns?.numRaces ?? 0),
     kms: (runs?.totalDistance ?? 0) + (selfieRuns?.totalDistance ?? 0) + (xlRuns?.totalDistance ?? 0),
     time: (runs?.totalTime ?? 0) + (selfieRuns?.totalTime ?? 0) + (xlRuns?.totalTime ?? 0),
   }

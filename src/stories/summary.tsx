@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const Summary = ({
-  totals: { participations, kms, time },
+  totals: { runs, selfieRuns, xlRuns, kms, time },
   isActive,
 }: Props) => {
   return (
@@ -23,10 +23,26 @@ export const Summary = ({
         className="absolute inset-x-0 top-64 w-full object-cover"
       />
       <RedHeader>5KM RUN</RedHeader>
-      <p className="self-center">
-        <RedText>{participations}</RedText>
-        <Label> участия в 5kmrun</Label>
-      </p>
+      <div className="self-center flex flex-row gap-4">
+        {runs > 0 && (
+          <p>
+            <RedText>{runs}</RedText>
+            <Label>5kmrun участия</Label>
+          </p>
+        )}
+        {selfieRuns > 0 && (
+          <p className="self-center">
+            <RedText>{selfieRuns}</RedText>
+            <Label>Selfie участия</Label>
+          </p>
+        )}
+        {xlRuns > 0 && (
+          <p className="self-center">
+            <RedText>{xlRuns}</RedText>
+            <Label>XLRun участия</Label>
+          </p>
+        )}
+      </div>
       <p className="self-center">
         <RedText>{formatDistance(kms)}</RedText> <Label> пробягани км</Label>
       </p>
@@ -34,6 +50,7 @@ export const Summary = ({
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
       </p>
+      <p className="self-center">5kmrun много повече от бягане!</p>
     </Story>
   );
 };
