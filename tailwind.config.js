@@ -5,9 +5,12 @@ export default {
   theme: {
     extend: {
       fontSize: {
-        lg: ["18px", "24px"],
-        "4xl": ["36px", "54px"],
-        "5xl": ["54px", "80px"],
+        lg: ["18px", "22px"],
+        xl: ["20px", "24px"],
+        "2xl": ["24px", "28px"],
+        "3xl": ["30px", "36px"],
+        "4xl": ["36px", "42px"],
+        "5xl": ["42px", "54px"],
       },
 
       borderRadius: {
@@ -59,5 +62,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwindcss-opentype")],
 };

@@ -23,7 +23,7 @@ export const RedHeader = ({ className, ...rest }: Props) => (
 );
 
 export const RedText = ({ className, ...rest }: Props) => (
-  <span className={cn(redGradient, "text-4xl mr-2", className)} {...rest} />
+  <span className={cn(redGradient, "text-3xl mr-1", className)} {...rest} />
 );
 
 export const BlueHeader = ({ className, ...rest }: Props) => (
@@ -34,7 +34,7 @@ export const BlueHeader = ({ className, ...rest }: Props) => (
 );
 
 export const BlueText = ({ className, ...rest }: Props) => (
-  <span className={cn(blueGradient, "text-4xl mr-2", className)} {...rest} />
+  <span className={cn(blueGradient, "text-3xl mr-1", className)} {...rest} />
 );
 
 export const YellowHeader = ({ className, ...rest }: Props) => (
@@ -45,12 +45,15 @@ export const YellowHeader = ({ className, ...rest }: Props) => (
 );
 
 export const YellowText = ({ className, ...rest }: Props) => (
-  <span className={cn(yellowGradient, "text-4xl mr-2", className)} {...rest} />
+  <span className={cn(yellowGradient, "text-3xl mr-1", className)} {...rest} />
 );
 
 export const Label = ({ className, ...rest }: Props) => (
   <span
-    className={cn("text-lg uppercase font-bold color-[#E7EFFF]", className)}
+    className={cn(
+      "all-small-caps text-lg font-bold color-[#E7EFFF]",
+      className
+    )}
     {...rest}
   />
 );

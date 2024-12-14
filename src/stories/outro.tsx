@@ -39,7 +39,7 @@ export const OutroTotals = ({ isActive }: Props) => (
 
     <p className="self-center">
       <YellowText>2472</YellowText>
-      <Label> организирани бягания</Label>
+      <Label> събития</Label>
     </p>
     <p className="self-center">
       <YellowText>1.3</YellowText> <Label> милиона км заедно</Label>
