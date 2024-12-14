@@ -13,6 +13,10 @@ type Props = {
   isActive?: boolean;
 };
 
+const SummaryLabel = ({ children }: { children: React.ReactNode }) => (
+  <Label className="text-md">{children}</Label>
+);
+
 export const Summary = ({
   totals: { runs, selfieRuns, xlRuns, kms, time, userName },
 }: Props) => {
@@ -30,35 +34,40 @@ export const Summary = ({
 
       <p className="self-center">{userName}</p>
 
-      <div className="self-center flex flex-row gap-4 mt-4">
+      <div className="self-center flex flex-row gap-4 text-center">
         {runs > 0 && (
           <p>
             <RedText>{runs}</RedText>
-            <Label>5km&nbsp;run участия</Label>
+            <br />
+            <SummaryLabel>5km&nbsp;run участия</SummaryLabel>
           </p>
         )}
         {xlRuns > 0 && (
           <p className="self-center">
             <RedText>{xlRuns}</RedText>
-            <Label>XLRun участия</Label>
+            <br />
+            <SummaryLabel>XLRun участия</SummaryLabel>
           </p>
         )}
         {selfieRuns > 0 && (
           <p className="self-center">
             <RedText>{selfieRuns}</RedText>
-            <Label>Selfie участия</Label>
+            <br />
+            <SummaryLabel>Selfie участия</SummaryLabel>
           </p>
         )}
       </div>
       <p className="self-center mt-4">
-        <RedText>{formatDistance(kms)}</RedText> <Label> пробягани км</Label>
+        <RedText>{formatDistance(kms)}</RedText>{" "}
+        <SummaryLabel> пробягани км</SummaryLabel>
       </p>
-      <p className="self-center mt-4">
+      <p className="self-center">
         <RedText>{formatTimeShort(time)}</RedText>
-        <Label> общо време</Label>
+        <SummaryLabel> общо време</SummaryLabel>
       </p>
-      <p className="self-center mt-4 text-lg font-bold color-[#E7EFFF] all-small-caps">
-        Организирани бягания в <RedText>14</RedText> града всяка седмица.
+      <p className="self-center mt-4 text-md font-bold all-small-caps text-balance text-center">
+        Организирани бягания в <RedText className="text-lg">14</RedText> града
+        всяка седмица.
       </p>
     </Story>
   );

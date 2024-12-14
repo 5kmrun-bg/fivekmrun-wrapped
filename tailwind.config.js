@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontSize: {
-        lg: ["16px", "18px"],
+        md: ["16px", "18px"],
+        lg: ["18px", "22px"],
         xl: ["20px", "24px"],
         "2xl": ["24px", "28px"],
         "3xl": ["30px", "36px"],
