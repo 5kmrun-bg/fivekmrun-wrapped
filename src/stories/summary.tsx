@@ -32,7 +32,7 @@ export const Summary = ({
         {runs > 0 && (
           <p>
             <RedText>{runs}</RedText>
-            <Label>5kmrun участия</Label>
+            <Label>5km&nbsp;run участия</Label>
           </p>
         )}
         {xlRuns > 0 && (
@@ -55,7 +55,7 @@ export const Summary = ({
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
       </p>
-      <p className="self-center mt-4">
+      <p className="self-center mt-4 text-lg font-bold color-[#E7EFFF] all-small-caps">
         Организирани бягания в <YellowText>14</YellowText> града всяка седмица.
       </p>
     </Story>
