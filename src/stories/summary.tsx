@@ -29,7 +29,7 @@ export const Summary = ({
           src={userProfileImg}
         />
       )}
-      <div className="self-center flex flex-row gap-4 mt-8">
+      <div className="self-center flex flex-row gap-4 mt-4">
         {runs > 0 && (
           <p>
             <RedText>{runs}</RedText>
@@ -49,14 +49,14 @@ export const Summary = ({
           </p>
         )}
       </div>
-      <p className="self-center mt-8">
+      <p className="self-center mt-4">
         <RedText>{formatDistance(kms)}</RedText> <Label> пробягани км</Label>
       </p>
-      <p className="self-center mt-8">
+      <p className="self-center mt-4">
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
       </p>
-      <p className="self-center mt-8">
+      <p className="self-center mt-4">
         Организирани бягания в <YellowText>14</YellowText> града всяка седмица.
       </p>
     </Story>
