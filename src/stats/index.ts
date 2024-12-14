@@ -23,7 +23,7 @@ const getTotalStats = (data: any) => {
   const xlRuns = getXLRunsStats(data);
 
   return {
-    userProfileImg: data.user?.avatarUrl,
+    userName: data.user?.name,
     runs: (runs?.activeWeeks ?? 0),
     selfieRuns: (selfieRuns?.activeWeeks ?? 0),
     xlRuns: (xlRuns?.numRaces ?? 0),

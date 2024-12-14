@@ -4,6 +4,7 @@ import backgroundSrc from "./assets/2024-bg.svg";
 import { loadStats } from "@/stats";
 import { formatTimeShort } from "@/lib/utils";
 import { formatDistance } from "@/lib/utils";
+import logo from "../components/logo.svg";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -13,7 +14,7 @@ type Props = {
 };
 
 export const Summary = ({
-  totals: { runs, selfieRuns, xlRuns, kms, time, userProfileImg },
+  totals: { runs, selfieRuns, xlRuns, kms, time, userName },
 }: Props) => {
   return (
     <Story className="relative justify-start" showLogo={false}>
@@ -22,12 +23,14 @@ export const Summary = ({
         className="absolute inset-x-0 top-64 w-full object-cover"
       />
       <RedHeader className="mt-4">5KM RUN</RedHeader>
-      {userProfileImg && (
-        <img
-          className="w-1/3 aspect-square rounded-full object-cover self-center"
-          src={userProfileImg}
-        />
-      )}
+      <img
+        src={logo}
+        alt="logo"
+        className="w-1/3 aspect-square rounded-full object-cover self-center"
+      />
+
+      <p className="self-center">{userName}</p>
+
       <div className="self-center flex flex-row gap-4 mt-4">
         {runs > 0 && (
           <p>
@@ -37,7 +40,7 @@ export const Summary = ({
         )}
         {xlRuns > 0 && (
           <p className="self-center">
-            <BlueText>{xlRuns}</BlueText>
+            <RedText>{xlRuns}</RedText>
             <Label>XLRun участия</Label>
           </p>
         )}
@@ -54,10 +57,9 @@ export const Summary = ({
       <p className="self-center mt-4">
         <RedText>{formatTimeShort(time)}</RedText>
         <Label> общо време</Label>
-      </p>
-      <p className="self-center mt-4 text-lg font-bold all-small-caps">
-        Организирани бягания в <YellowText>14</YellowText> града всяка седмица.
-      </p>
+      </p>  
+      <p className="self-center mt-4 text-lg font-bold color-[#E7EFFF] all-small-caps">
+        Организирани бягания в <RedText>14</RedText> града всяка седмица.
     </Story>
   );
 };
