@@ -16,8 +16,8 @@ type Props = {
 const AnimatedCheck = ({ isActive }: { isActive?: boolean }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="100px"
-    width="100px"
+    height="80px"
+    width="80px"
     viewBox="0 -3 24 24"
     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
   >
@@ -64,8 +64,8 @@ export const SelfieRunsStory = ({
   <Story>
     <RedHeader>5KM Selfie</RedHeader>
 
-    <div className="max-w-none w-[calc(100%+2rem)] -mx-4 relative">
-      <img src={backgroundSrc} className="w-full h-[220px]" />
+    <div className="max-w-none w-[calc(100%+2rem)] max-h-[180px] -mx-4 relative">
+      <img src={backgroundSrc} className="size-full" />
       <AnimatedCheck isActive={isActive} />
     </div>
 

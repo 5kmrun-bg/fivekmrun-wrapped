@@ -25,7 +25,7 @@ export const OfficialRunsStory = ({
       <RedHeader>5KM RUN</RedHeader>
 
       <div className="max-w-none w-[calc(100%+2rem)] -mx-4 relative">
-        <img src={backgroundSrc} className="w-full" />
+        <img src={backgroundSrc} className="size-full" />
         <motion.img
           src={runnerSrc}
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"

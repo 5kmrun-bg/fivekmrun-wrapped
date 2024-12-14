@@ -18,8 +18,8 @@ export const XLRunsStory = ({ xlRuns, isActive }: Props) => (
   <Story>
     <BlueHeader>XLKM RUN</BlueHeader>
 
-    <div className="max-w-none w-[calc(100%+2rem)] -mx-4 relative">
-      <img src={backgroundSrc} className="w-full  max-h-[160px]" />
+    <div className="max-w-none w-[calc(100%+2rem)] max-h-[180px] -mx-4 relative">
+      <img src={backgroundSrc} className="size-full" />
       <motion.img
         src={runnerSrc}
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
