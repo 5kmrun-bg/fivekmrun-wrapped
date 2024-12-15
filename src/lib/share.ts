@@ -17,10 +17,17 @@ const height = 1280;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+let videoBlob = null as Blob | null;
+
 export const shareVideo = async (
   elements: HTMLElement[],
   select: (idx: number) => void
 ) => {
+  if (videoBlob) {
+    await shareOrDownload(videoBlob, videoFileName);
+    return;
+  }
+
   const MP4 = await loadMP4Module();
   const encoder = MP4.createWebCodecsEncoder({
     width,
@@ -47,9 +54,7 @@ export const shareVideo = async (
 
   const buf = await encoder.end();
 
-  const videoBlob = new Blob([buf], { type: "video/mp4" });
-
-  await shareOrDownload(videoBlob, videoFileName);
+  videoBlob = new Blob([buf], { type: "video/mp4" });
 };
 
 export const shareImage = async (element: HTMLElement) => {
