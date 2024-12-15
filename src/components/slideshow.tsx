@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/carousel";
 import { SlideShowProgress } from "./slideshow-progress";
 import Autoplay from "embla-carousel-autoplay";
+import { Button } from "./ui/button";
+import { shareVideo } from "@/lib/share";
 
 export type Step = {
   id: string;
@@ -19,8 +21,15 @@ export type SlideshowProps = {
   onStep?: (step: Step) => void;
 };
 
+const shouldShowFF = (ff: string) => {
+  const params = new URL(document.location.toString()).searchParams;
+  const featureFlag = params.get("ff");
+  return featureFlag?.includes(ff);
+};
+
 export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
   ({ steps, onStep }, ref) => {
+    const showVideoShare = shouldShowFF("video");
     const [api, setApi] = React.useState<CarouselApi>();
     const autoplayRef = React.useRef(
       Autoplay({ delay: 3000, stopOnInteraction: true, stopOnLastSnap: true })
@@ -73,6 +82,17 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
       }
     }, [api, onStep, steps]);
 
+    const handleShare = async () => {
+      const snapshotElement = (ref as any)?.current as HTMLElement;
+      if (snapshotElement) {
+        if (snapshotElement) {
+          const elements = [...snapshotElement.children] as HTMLElement[];
+          const select = (idx: number) => api?.scrollTo(idx, true);
+          shareVideo(elements, select);
+        }
+      }
+    };
+
     return (
       <Carousel
         setApi={setApi}
@@ -87,6 +107,14 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
           autoplayApi={autoplayRef.current}
           className="absolute top-0 left-0 right-0 pointer-events-none z-10 p-4"
         />
+        {showVideoShare && (
+          <Button
+            className="absolute top-0 right-0 z-10 p-4"
+            onClick={handleShare}
+          >
+            video
+          </Button>
+        )}
 
         <CarouselContent ref={ref}>
           {steps.map((card, idx) => (

@@ -10,12 +10,17 @@ const imageFileName = `5kmrun-${YEAR}.png`;
 const videoFileName = `5kmrun-${YEAR}.mp4`;
 const title = `${YEAR} с 5kmrun.bg`;
 
-const fps = 1; // 1 frame per second is enough
+const fps = 24;
 const stroyDuration = 3;
 const width = 720;
 const height = 1280;
 
-export const shareVideo = async (elements: HTMLElement[]) => {
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const shareVideo = async (
+  elements: HTMLElement[],
+  select: (idx: number) => void
+) => {
   const MP4 = await loadMP4Module();
   const encoder = MP4.createWebCodecsEncoder({
     width,
@@ -23,14 +28,20 @@ export const shareVideo = async (elements: HTMLElement[]) => {
     fps,
   });
 
-  for (const element of elements) {
-    const canvas = await toCanvas(element, {
-      canvasWidth: width,
-      canvasHeight: height,
-    });
+  for (let i = 0; i < elements.length; i++) {
+    select(i);
 
-    for (let i = 0; i < stroyDuration * fps; i++) {
+    for (let j = 0; j < stroyDuration * fps; j++) {
+      console.time(`slide ${i} frame ${j}`);
+      const canvas = await toCanvas(elements[i], {
+        canvasWidth: width,
+        canvasHeight: height,
+      });
+
       await encoder.addFrame(canvas);
+      console.timeEnd(`slide ${i} frame ${j}`);
+
+      await sleep(1000 / fps);
     }
   }
 
