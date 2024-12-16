@@ -12,6 +12,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
 import { shareVideo } from "@/lib/share";
 
+const SLIDE_DURATION = 5000;
+
 export type Step = {
   id: string;
   content: React.ReactNode;
@@ -32,7 +34,11 @@ export const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
     const showVideoShare = shouldShowFF("video");
     const [api, setApi] = React.useState<CarouselApi>();
     const autoplayRef = React.useRef(
-      Autoplay({ delay: 3000, stopOnInteraction: true, stopOnLastSnap: true })
+      Autoplay({
+        delay: SLIDE_DURATION,
+        stopOnInteraction: true,
+        stopOnLastSnap: true,
+      })
     );
 
     const [isDragging, setIsDragging] = useState(false);
