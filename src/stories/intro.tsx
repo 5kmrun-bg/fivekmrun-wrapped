@@ -3,7 +3,7 @@ import { Story } from "@/components/story";
 import { loadStats } from "@/stats";
 import { RedText } from "./common";
 import { cn } from "@/lib/utils";
-import backgroundSrc from "./assets/2024-bg.svg";
+import { YearBackground } from "./year-background";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -16,10 +16,7 @@ const squareAndRound = "w-full aspect-square rounded-full";
 
 export const IntroStory = ({ user, isActive }: Props) => (
   <Story className="relative justify-start">
-    <img
-      src={backgroundSrc}
-      className="absolute inset-x-0 bottom-8 w-full object-cover"
-    />
+    <YearBackground position="bottom" />
 
     <motion.div
       className={cn(squareAndRound, "bg-slate-800 p-6 mt-10")}
