@@ -5,6 +5,7 @@ import { YellowText, Label } from "./common";
 import backgroundSrc from "./assets/totals-bg.svg";
 import runnerSrc from "./assets/totals-star.svg";
 import respectSrc from "./assets/respect.webp";
+import { YEAR } from "@/api/constants";
 
 type Props = {
   isActive?: boolean;
@@ -38,14 +39,14 @@ export const OutroTotals = ({ isActive }: Props) => (
     </div>
 
     <p className="self-center">
-      <YellowText>2472</YellowText>
+      <YellowText>3254</YellowText>
       <Label> събития</Label>
     </p>
     <p className="self-center">
-      <YellowText>1.3</YellowText> <Label> милиона км заедно</Label>
+      <YellowText>1.5</YellowText> <Label> милиона км заедно</Label>
     </p>
     <p className="self-center">
-      <YellowText>13</YellowText>
+      <YellowText>{YEAR - 2012}</YellowText>
       <Label> години движение</Label>
     </p>
   </Story>
@@ -61,7 +62,7 @@ export const OutroThankyou = () => (
       <p className="normal-case text-xl font-light">
         че беше част от нашето
         <br />
-        приключение през 2024!
+        приключение през {YEAR}!
       </p>
     </div>
 

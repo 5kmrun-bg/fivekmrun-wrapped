@@ -1,10 +1,10 @@
 import { Story } from "@/components/story";
 import { Label, RedHeader, RedText } from "./common";
-import backgroundSrc from "./assets/2024-bg.svg";
 import { loadStats } from "@/stats";
 import { formatTimeShort } from "@/lib/utils";
 import { formatDistance } from "@/lib/utils";
 import logo from "@/assets/logo.svg";
+import { YearBackground } from "./year-background";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
@@ -22,10 +22,8 @@ export const Summary = ({
 }: Props) => {
   return (
     <Story className="relative justify-start" showLogo={false}>
-      <img
-        src={backgroundSrc}
-        className="absolute inset-x-0 top-64 w-full object-cover"
-      />
+      <YearBackground />
+
       <RedHeader className="mt-4">5KM RUN</RedHeader>
       <img
         src={logo}
