@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update-data": "cd src/scripts && node update-data.js"
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "1.1.0",

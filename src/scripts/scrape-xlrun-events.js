@@ -1,11 +1,12 @@
 import fetch from "node-fetch";
 import { copyFileSync, writeFileSync } from "fs";
+import { YEAR } from "./get-year.js";
 
 const HOUR = 60 * 60 * 1000;
-const YEAR = 2025;
-
 const PAST_EVENTS_URL = "https://5kmrun.bg/api/xlrun/results/";
 const RESULTS_URL = "https://5kmrun.bg/api/xlrun/result/";
+
+console.log(`Scraping XLRun events for year: ${YEAR}`);
 
 const getEventsBatch = async (page) => {
   const param = `/${page * 50}`;
