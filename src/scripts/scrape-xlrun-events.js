@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { copyFileSync, writeFileSync } from "fs";
 
 const HOUR = 60 * 60 * 1000;
-const YEAR = 2024;
+const YEAR = 2025;
 
 const PAST_EVENTS_URL = "https://5kmrun.bg/api/xlrun/results/";
 const RESULTS_URL = "https://5kmrun.bg/api/xlrun/result/";
