@@ -1,6 +1,12 @@
 # Yearly update 
 Run the following command to update the event data for the past year:
 
+
+### Step 0: Run npm install
+```
+npm install
+```
+
 ### Step 1: Run the update script
 ```
 npm run update-data
